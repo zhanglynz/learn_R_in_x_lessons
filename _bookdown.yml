@@ -4,6 +4,7 @@ new_session: yes
 rmd_files: [
   "index.Rmd",
   "lesson_1.Rmd",
+  "lesson_2.Rmd",
 
 
 
