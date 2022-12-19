@@ -1,0 +1,22 @@
+--- 
+knit: "bookdown::render_book"
+title: "Learn R in 10 Lessons: an Introductory Guide"
+author: "Lingyun Zhang"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+link-citations: yes
+links-as-notes: true
+colorlinks: true
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Preface {-}
+
+To be written
