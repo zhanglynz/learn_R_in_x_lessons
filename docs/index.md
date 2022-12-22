@@ -2,7 +2,7 @@
 knit: "bookdown::render_book"
 title: "Learn R in 10 Lessons: an Introductory Guide"
 author: "Lingyun Zhang"
-date: "2022-12-19"
+date: "2022-12-22"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book
@@ -17,4 +17,26 @@ colorlinks: true
 
 # Preface {-}
 
-To be written
+Why learn R?
+
+- R is a general purpose computer language
+- R is the best for dealing with data
+- R has such a good IDE (Integrated Development Environment), RStudio
+- R has so many valuable/powerful packages
+- R has a very good ecosystem
+- R is free
+
+What to learn?
+
+- base R
+- R packages
+- workflows
+
+
+How to learn?
+
+- try to learn from the best resources 
+- grasp the basics
+- aim to problem solving with R
+- write many R scrips
+- learn incessantly

@@ -20,8 +20,22 @@ install.packages("ggplot2")
 install.packages("data.table")
 ```
 
-Run each line of code by pressing down **Ctrl** key then clicking on **Enter** key
+Run each line of code by i) moving the cursor in that line; ii) pressing down **Ctrl** key then clicking on **Enter** key
 
 ## Explore Rstudio
+
+**Tasks** :
+
+- Figure out how to create a new project, called `my_proj_1`
+
+- Figure out how to create an R script, called `try_1.R`, which is under the just created project `my_proj_1` and  contains the following R code
+
+```r
+1+1
+print("Hello World!")
+rnorm(5)
+```
+
+- Figure out how to run R code in `try_1.R`: a) line by line; b) all three lines "together".
 
 
