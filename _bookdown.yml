@@ -5,6 +5,11 @@ rmd_files: [
   "index.Rmd",
   "lesson_1.Rmd",
   "lesson_2.Rmd",
+  "lesson_3.Rmd",
+  "lesson_4.Rmd",
+  "lesson_5.Rmd",
+  "lesson_6.Rmd",
+  "lesson_7.Rmd",
 
 
 
