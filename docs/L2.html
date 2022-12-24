@@ -23,7 +23,7 @@
 <meta name="author" content="Lingyun Zhang" />
 
 
-<meta name="date" content="2022-12-22" />
+<meta name="date" content="2022-12-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -159,6 +159,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="L2" class="section level1 hasAnchor" number="2">
 <h1><span class="header-section-number">2</span> Lesson 2 Toy Examples<a href="L2.html#L2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>There are three toy examples; go through them one by one.
+Firstly, think about how to solve the problem by yourself; and then study the example R code.</p>
+<p><strong>Example 1:</strong> Write an R program to plot <span class="math inline">\(f(x)=\sin(x)\)</span> (black color) and <span class="math inline">\(g(x)=\cos(x)\)</span> (red color) together; <span class="math inline">\(x\)</span> takes values from <span class="math inline">\(-2\pi\)</span> to <span class="math inline">\(2\pi\)</span>.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="L2.html#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">2</span><span class="sc">*</span>pi, <span class="dv">2</span><span class="sc">*</span>pi, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb3-2"><a href="L2.html#cb3-2" aria-hidden="true" tabindex="-1"></a>y_1 <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)</span>
+<span id="cb3-3"><a href="L2.html#cb3-3" aria-hidden="true" tabindex="-1"></a>y_2 <span class="ot">&lt;-</span> <span class="fu">cos</span>(x)</span>
+<span id="cb3-4"><a href="L2.html#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y_1, <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">col =</span> <span class="st">&#39;black&#39;</span>, <span class="at">xlab =</span> <span class="st">&#39;x&#39;</span>, <span class="at">ylab =</span> <span class="st">&#39;y&#39;</span>,</span>
+<span id="cb3-5"><a href="L2.html#cb3-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Plot of sin(x) (black) and cos(x) (red)&quot;</span>)</span>
+<span id="cb3-6"><a href="L2.html#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(x, y_2, <span class="at">type =</span> <span class="st">&#39;l&#39;</span>, <span class="at">col =</span> <span class="st">&#39;red&#39;</span>)</span>
+<span id="cb3-7"><a href="L2.html#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span>
+<span id="cb3-8"><a href="L2.html#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="dv">0</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><img src="lesson_2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><strong>Example 2:</strong> Check all integers from 1 to 100: if an integer is multiple of 5, then output “F”; if the integer is multiple of 7, then output “S”; if it’s multiple of both 5 and 7, then output “FS”; otherwise just output the integer.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="L2.html#cb4-1" aria-hidden="true" tabindex="-1"></a>nbr <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span>
+<span id="cb4-2"><a href="L2.html#cb4-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">&quot;&quot;</span>, <span class="at">times =</span> <span class="dv">100</span>)</span>
+<span id="cb4-3"><a href="L2.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> nbr) {</span>
+<span id="cb4-4"><a href="L2.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb4-5"><a href="L2.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">%%</span> <span class="dv">5</span> <span class="sc">==</span> <span class="dv">0</span>) s <span class="ot">&lt;-</span> <span class="st">&quot;F&quot;</span></span>
+<span id="cb4-6"><a href="L2.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(i <span class="sc">%%</span> <span class="dv">7</span> <span class="sc">==</span> <span class="dv">0</span>) s <span class="ot">&lt;-</span> <span class="fu">paste0</span>(s, <span class="st">&quot;S&quot;</span>)</span>
+<span id="cb4-7"><a href="L2.html#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(s <span class="sc">!=</span> <span class="st">&quot;&quot;</span>) {output[i] <span class="ot">&lt;-</span> s</span>
+<span id="cb4-8"><a href="L2.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {output[i] <span class="ot">&lt;-</span> i}</span>
+<span id="cb4-9"><a href="L2.html#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-10"><a href="L2.html#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(output)</span></code></pre></div>
+<pre><code>##   [1] &quot;1&quot;  &quot;2&quot;  &quot;3&quot;  &quot;4&quot;  &quot;F&quot;  &quot;6&quot;  &quot;S&quot;  &quot;8&quot;  &quot;9&quot;  &quot;F&quot;  &quot;11&quot; &quot;12&quot; &quot;13&quot; &quot;S&quot;  &quot;F&quot; 
+##  [16] &quot;16&quot; &quot;17&quot; &quot;18&quot; &quot;19&quot; &quot;F&quot;  &quot;S&quot;  &quot;22&quot; &quot;23&quot; &quot;24&quot; &quot;F&quot;  &quot;26&quot; &quot;27&quot; &quot;S&quot;  &quot;29&quot; &quot;F&quot; 
+##  [31] &quot;31&quot; &quot;32&quot; &quot;33&quot; &quot;34&quot; &quot;FS&quot; &quot;36&quot; &quot;37&quot; &quot;38&quot; &quot;39&quot; &quot;F&quot;  &quot;41&quot; &quot;S&quot;  &quot;43&quot; &quot;44&quot; &quot;F&quot; 
+##  [46] &quot;46&quot; &quot;47&quot; &quot;48&quot; &quot;S&quot;  &quot;F&quot;  &quot;51&quot; &quot;52&quot; &quot;53&quot; &quot;54&quot; &quot;F&quot;  &quot;S&quot;  &quot;57&quot; &quot;58&quot; &quot;59&quot; &quot;F&quot; 
+##  [61] &quot;61&quot; &quot;62&quot; &quot;S&quot;  &quot;64&quot; &quot;F&quot;  &quot;66&quot; &quot;67&quot; &quot;68&quot; &quot;69&quot; &quot;FS&quot; &quot;71&quot; &quot;72&quot; &quot;73&quot; &quot;74&quot; &quot;F&quot; 
+##  [76] &quot;76&quot; &quot;S&quot;  &quot;78&quot; &quot;79&quot; &quot;F&quot;  &quot;81&quot; &quot;82&quot; &quot;83&quot; &quot;S&quot;  &quot;F&quot;  &quot;86&quot; &quot;87&quot; &quot;88&quot; &quot;89&quot; &quot;F&quot; 
+##  [91] &quot;S&quot;  &quot;92&quot; &quot;93&quot; &quot;94&quot; &quot;F&quot;  &quot;96&quot; &quot;97&quot; &quot;S&quot;  &quot;99&quot; &quot;F&quot;</code></pre>
+<p><strong>Example 3:</strong> Write an <strong>R function</strong> to calculate how old you are in days.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="L2.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate) <span class="co"># to use function days()</span></span>
+<span id="cb6-2"><a href="L2.html#cb6-2" aria-hidden="true" tabindex="-1"></a>how_old_in_days <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="st">`</span><span class="at">birth_day_yyyy-mm-dd</span><span class="st">`</span>)</span>
+<span id="cb6-3"><a href="L2.html#cb6-3" aria-hidden="true" tabindex="-1"></a>{today <span class="ot">&lt;-</span> <span class="fu">Sys.Date</span>()</span>
+<span id="cb6-4"><a href="L2.html#cb6-4" aria-hidden="true" tabindex="-1"></a> life_in_days <span class="ot">&lt;-</span> <span class="fu">days</span>(today <span class="sc">-</span> <span class="fu">as.Date</span>(<span class="st">`</span><span class="at">birth_day_yyyy-mm-dd</span><span class="st">`</span>))</span>
+<span id="cb6-5"><a href="L2.html#cb6-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">print</span>(life_in_days)</span>
+<span id="cb6-6"><a href="L2.html#cb6-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-7"><a href="L2.html#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="fu">how_old_in_days</span>(<span class="st">&quot;2005-12-04&quot;</span>) <span class="co"># today is &quot;2022-12-25&quot;</span></span></code></pre></div>
+<pre><code>## [1] &quot;6230d 0H 0M 0S&quot;</code></pre>
 
 </div>
             </section>
@@ -221,6 +260,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
