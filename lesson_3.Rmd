@@ -1,1 +1,119 @@
 # Lesson 3 R Essentials {#L3}
+
+## A formula
+
+Learning any a computer language, we aim to write programs for solving problems. It's useful to know the following formula:
+$$
+\hbox{program}\approx \hbox{algorithm} + \hbox{data structure} + \hbox{language}
+$$
+
+**Algorithm**, roughly speaking, is about **logic steps** towards solving a problem, and this is beyond the scope of this book. Fortunately, at a beginning level, all the algorithms that we need are pretty easy.
+
+We will cover main **data structures** in R in Lesson \@ref(L4).
+
+As for **language**, specifically R language, we will grasp the most important things in this lesson.
+
+## R language
+
+To learn R, we must learn
+
+1. assignment
+1. `if else`
+1. `for` loop
+1. built-in R functions
+1. self-defined R functions
+1. R packages
+
+Note that items 1 to 5 in the above are in the domain of **base R**; various R packages that we install after having R can be referred to as **extended R**. In this section, we will cover items 1 to 3; items 4 and 5 will be the topics for Lesson \@ref(L5); item 6 will be covered in Lesson \@ref(L6).
+
+### Assignment statements 
+
+In R, an assignment statement creates a new (vector) variable and gives it value(s).
+
+**Examples:**
+```{r}
+my_name <- "Larry"
+age <- 25
+sex <- "male"
+the_nbrs <- 1:100
+five_random_nbrs <- c(1.2, 2.8, 5.9, 4.0, 3.7)
+a_flag <- c(TRUE, FALSE, TRUE)
+```
+
+As shown in the above examples, an assignment is something like
+```{r, eval=FALSE}
+variable_name <- values
+```
+
+**Rules:**
+
+1. A variable name contains letters, digits (0-9), `.` (dot) or `_` (underscore).
+1. A variable name normally starts with a letter.
+1. Reserved words words (e.g. `if`) cannot be used as a variable name.
+
+### `if else`
+
+**Examples:**
+
+```{r}
+x <- 10
+if(x > 5) print("x is greater than 5.")
+if(x > 50) {print("x is greater than 50")
+} else {print("x is NOT greater than 50")}
+```
+
+**Rules:**
+
+- `if(conditional) {execution}`
+- `if(conditional) {execution} else {alternative execution}`
+
+
+**`else if`**: this is kind of special. Let's have an example. We create a function for giving a score, either 'green', 'orange', or 'red', based on `x` is positive and $\le$ 1, greater than 1 but $\le$ 2, or greater than 2. 
+
+```{r}
+have_a_score <- function(x) 
+{if(x < 0) {
+   "invalid"
+} else if(x <= 1) {
+   "green"
+} else if(x <= 2) {
+   "orange"
+} else {
+   "red"
+}
+}
+
+print(have_a_score(-1))
+print(have_a_score(0.5))
+```
+
+**`ifelse`**: it is a vectorized version of `if else`. Example:
+```{r}
+x <- 1:10
+output <- ifelse(x %% 2 == 0, "even", "odd")
+print(output)
+```
+
+
+
+### `for` loop
+
+**Examples:** 
+
+```{r}
+s <- 0
+for(i in 1:100) {
+  s <- s + i
+}
+print(s)
+
+for(a in letters[1:5]) {
+  print(a)
+}
+
+```
+
+**Rules:**
+
+- `for(a_var in a_vector) {action}`
+

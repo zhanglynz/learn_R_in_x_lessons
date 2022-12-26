@@ -1,1 +1,1 @@
-# Lesson 7 Data Manipulation {#L7}
+# Lesson 7 Making Plots {#L7}

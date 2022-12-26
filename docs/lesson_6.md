@@ -1,1 +1,1 @@
-# Lesson 6 Making Plots {#L6}
+# Lesson 6 R Packages {#L6}

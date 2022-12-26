@@ -4,7 +4,13 @@ use-rstuio-to-install-r-packages
 explore-rstudio
 L2
 L3
+a-formula
+r-language
+assignment-statements
+if-else
+for-loop
 L4
 L5
 L6
 L7
+L8

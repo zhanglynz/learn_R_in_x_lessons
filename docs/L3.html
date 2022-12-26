@@ -23,7 +23,7 @@
 <meta name="author" content="Lingyun Zhang" />
 
 
-<meta name="date" content="2022-12-25" />
+<meta name="date" content="2022-12-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -140,11 +140,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="L1.html"><a href="L1.html#explore-rstudio"><i class="fa fa-check"></i><b>1.3</b> Explore Rstudio</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="L2.html"><a href="L2.html"><i class="fa fa-check"></i><b>2</b> Lesson 2 Toy Examples</a></li>
-<li class="chapter" data-level="3" data-path="L3.html"><a href="L3.html"><i class="fa fa-check"></i><b>3</b> Lesson 3 R Essentials</a></li>
+<li class="chapter" data-level="3" data-path="L3.html"><a href="L3.html"><i class="fa fa-check"></i><b>3</b> Lesson 3 R Essentials</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="L3.html"><a href="L3.html#a-formula"><i class="fa fa-check"></i><b>3.1</b> A formula</a></li>
+<li class="chapter" data-level="3.2" data-path="L3.html"><a href="L3.html#r-language"><i class="fa fa-check"></i><b>3.2</b> R language</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="L3.html"><a href="L3.html#assignment-statements"><i class="fa fa-check"></i><b>3.2.1</b> Assignment statements</a></li>
+<li class="chapter" data-level="3.2.2" data-path="L3.html"><a href="L3.html#if-else"><i class="fa fa-check"></i><b>3.2.2</b> <code>if else</code></a></li>
+<li class="chapter" data-level="3.2.3" data-path="L3.html"><a href="L3.html#for-loop"><i class="fa fa-check"></i><b>3.2.3</b> <code>for</code> loop</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="4" data-path="L4.html"><a href="L4.html"><i class="fa fa-check"></i><b>4</b> Lesson 4 Data Structure</a></li>
-<li class="chapter" data-level="5" data-path="L5.html"><a href="L5.html"><i class="fa fa-check"></i><b>5</b> Lesson 5 Write Your Own Functions</a></li>
-<li class="chapter" data-level="6" data-path="L6.html"><a href="L6.html"><i class="fa fa-check"></i><b>6</b> Lesson 6 Making Plots</a></li>
-<li class="chapter" data-level="7" data-path="L7.html"><a href="L7.html"><i class="fa fa-check"></i><b>7</b> Lesson 7 Data Manipulation</a></li>
+<li class="chapter" data-level="5" data-path="L5.html"><a href="L5.html"><i class="fa fa-check"></i><b>5</b> Lesson 5 R Functions</a></li>
+<li class="chapter" data-level="6" data-path="L6.html"><a href="L6.html"><i class="fa fa-check"></i><b>6</b> Lesson 6 R Packages</a></li>
+<li class="chapter" data-level="7" data-path="L7.html"><a href="L7.html"><i class="fa fa-check"></i><b>7</b> Lesson 7 Making Plots</a></li>
+<li class="chapter" data-level="8" data-path="L8.html"><a href="L8.html"><i class="fa fa-check"></i><b>8</b> Lesson 8 Data Manipulation</a></li>
 </ul>
 
       </nav>
@@ -164,7 +174,108 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="L3" class="section level1 hasAnchor" number="3">
 <h1><span class="header-section-number">3</span> Lesson 3 R Essentials<a href="L3.html#L3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="a-formula" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> A formula<a href="L3.html#a-formula" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Learning any a computer language, we aim to write programs for solving problems. It’s useful to know the following formula:
+<span class="math display">\[
+\hbox{program}\approx \hbox{algorithm} + \hbox{data structure} + \hbox{language}
+\]</span></p>
+<p><strong>Algorithm</strong>, roughly speaking, is about <strong>logic steps</strong> towards solving a problem, and this is beyond the scope of this book. Fortunately, at a beginning level, all the algorithms that we need are pretty easy.</p>
+<p>We will cover main <strong>data structures</strong> in R in Lesson <a href="L4.html#L4">4</a>.</p>
+<p>As for <strong>language</strong>, specifically R language, we will grasp the most important things in this lesson.</p>
+</div>
+<div id="r-language" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> R language<a href="L3.html#r-language" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To learn R, we must learn</p>
+<ol style="list-style-type: decimal">
+<li>assignment</li>
+<li><code>if else</code></li>
+<li><code>for</code> loop</li>
+<li>built-in R functions</li>
+<li>self-defined R functions</li>
+<li>R packages</li>
+</ol>
+<p>Note that items 1 to 5 in the above are in the domain of <strong>base R</strong>; various R packages that we install after having R can be referred to as <strong>extended R</strong>. In this section, we will cover items 1 to 3; items 4 and 5 will be the topics for Lesson <a href="L5.html#L5">5</a>; item 6 will be covered in Lesson <a href="L6.html#L6">6</a>.</p>
+<div id="assignment-statements" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Assignment statements<a href="L3.html#assignment-statements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, an assignment statement creates a new (vector) variable and gives it value(s).</p>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="L3.html#cb8-1" aria-hidden="true" tabindex="-1"></a>my_name <span class="ot">&lt;-</span> <span class="st">&quot;Larry&quot;</span></span>
+<span id="cb8-2"><a href="L3.html#cb8-2" aria-hidden="true" tabindex="-1"></a>age <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb8-3"><a href="L3.html#cb8-3" aria-hidden="true" tabindex="-1"></a>sex <span class="ot">&lt;-</span> <span class="st">&quot;male&quot;</span></span>
+<span id="cb8-4"><a href="L3.html#cb8-4" aria-hidden="true" tabindex="-1"></a>the_nbrs <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span></span>
+<span id="cb8-5"><a href="L3.html#cb8-5" aria-hidden="true" tabindex="-1"></a>five_random_nbrs <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">1.2</span>, <span class="fl">2.8</span>, <span class="fl">5.9</span>, <span class="fl">4.0</span>, <span class="fl">3.7</span>)</span>
+<span id="cb8-6"><a href="L3.html#cb8-6" aria-hidden="true" tabindex="-1"></a>a_flag <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>As shown in the above examples, an assignment is something like</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="L3.html#cb9-1" aria-hidden="true" tabindex="-1"></a>variable_name <span class="ot">&lt;-</span> values</span></code></pre></div>
+<p><strong>Rules:</strong></p>
+<ol style="list-style-type: decimal">
+<li>A variable name contains letters, digits (0-9), <code>.</code> (dot) or <code>_</code> (underscore).</li>
+<li>A variable name normally starts with a letter.</li>
+<li>Reserved words words (e.g. <code>if</code>) cannot be used as a variable name.</li>
+</ol>
+</div>
+<div id="if-else" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> <code>if else</code><a href="L3.html#if-else" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="L3.html#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb10-2"><a href="L3.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">&gt;</span> <span class="dv">5</span>) <span class="fu">print</span>(<span class="st">&quot;x is greater than 5.&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;x is greater than 5.&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="L3.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(x <span class="sc">&gt;</span> <span class="dv">50</span>) {<span class="fu">print</span>(<span class="st">&quot;x is greater than 50&quot;</span>)</span>
+<span id="cb12-2"><a href="L3.html#cb12-2" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {<span class="fu">print</span>(<span class="st">&quot;x is NOT greater than 50&quot;</span>)}</span></code></pre></div>
+<pre><code>## [1] &quot;x is NOT greater than 50&quot;</code></pre>
+<p><strong>Rules:</strong></p>
+<ul>
+<li><code>if(conditional) {execution}</code></li>
+<li><code>if(conditional) {execution} else {alternative execution}</code></li>
+</ul>
+<p><strong><code>else if</code></strong>: this is kind of special. Let’s have an example. We create a function for giving a score, either ‘green’, ‘orange’, or ‘red’, based on <code>x</code> is positive and <span class="math inline">\(\le\)</span> 1, greater than 1 but <span class="math inline">\(\le\)</span> 2, or greater than 2.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="L3.html#cb14-1" aria-hidden="true" tabindex="-1"></a>have_a_score <span class="ot">&lt;-</span> <span class="cf">function</span>(x) </span>
+<span id="cb14-2"><a href="L3.html#cb14-2" aria-hidden="true" tabindex="-1"></a>{<span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
+<span id="cb14-3"><a href="L3.html#cb14-3" aria-hidden="true" tabindex="-1"></a>   <span class="st">&quot;invalid&quot;</span></span>
+<span id="cb14-4"><a href="L3.html#cb14-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">&lt;=</span> <span class="dv">1</span>) {</span>
+<span id="cb14-5"><a href="L3.html#cb14-5" aria-hidden="true" tabindex="-1"></a>   <span class="st">&quot;green&quot;</span></span>
+<span id="cb14-6"><a href="L3.html#cb14-6" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> <span class="cf">if</span>(x <span class="sc">&lt;=</span> <span class="dv">2</span>) {</span>
+<span id="cb14-7"><a href="L3.html#cb14-7" aria-hidden="true" tabindex="-1"></a>   <span class="st">&quot;orange&quot;</span></span>
+<span id="cb14-8"><a href="L3.html#cb14-8" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb14-9"><a href="L3.html#cb14-9" aria-hidden="true" tabindex="-1"></a>   <span class="st">&quot;red&quot;</span></span>
+<span id="cb14-10"><a href="L3.html#cb14-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-11"><a href="L3.html#cb14-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-12"><a href="L3.html#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="L3.html#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">have_a_score</span>(<span class="sc">-</span><span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;invalid&quot;</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="L3.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">have_a_score</span>(<span class="fl">0.5</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;green&quot;</code></pre>
+<p><strong><code>ifelse</code></strong>: it is a vectorized version of <code>if else</code>. Example:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="L3.html#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb18-2"><a href="L3.html#cb18-2" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(x <span class="sc">%%</span> <span class="dv">2</span> <span class="sc">==</span> <span class="dv">0</span>, <span class="st">&quot;even&quot;</span>, <span class="st">&quot;odd&quot;</span>)</span>
+<span id="cb18-3"><a href="L3.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(output)</span></code></pre></div>
+<pre><code>##  [1] &quot;odd&quot;  &quot;even&quot; &quot;odd&quot;  &quot;even&quot; &quot;odd&quot;  &quot;even&quot; &quot;odd&quot;  &quot;even&quot; &quot;odd&quot;  &quot;even&quot;</code></pre>
+</div>
+<div id="for-loop" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> <code>for</code> loop<a href="L3.html#for-loop" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="L3.html#cb20-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb20-2"><a href="L3.html#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {</span>
+<span id="cb20-3"><a href="L3.html#cb20-3" aria-hidden="true" tabindex="-1"></a>  s <span class="ot">&lt;-</span> s <span class="sc">+</span> i</span>
+<span id="cb20-4"><a href="L3.html#cb20-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-5"><a href="L3.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(s)</span></code></pre></div>
+<pre><code>## [1] 5050</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="L3.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(a <span class="cf">in</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>]) {</span>
+<span id="cb22-2"><a href="L3.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(a)</span>
+<span id="cb22-3"><a href="L3.html#cb22-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot;
+## [1] &quot;b&quot;
+## [1] &quot;c&quot;
+## [1] &quot;d&quot;
+## [1] &quot;e&quot;</code></pre>
+<p><strong>Rules:</strong></p>
+<ul>
+<li><code>for(a_var in a_vector) {action}</code></li>
+</ul>
 
+</div>
+</div>
 </div>
             </section>
 
