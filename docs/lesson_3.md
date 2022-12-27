@@ -7,7 +7,7 @@ $$
 \hbox{program}\approx \hbox{algorithm} + \hbox{data structure} + \hbox{language}
 $$
 
-**Algorithm**, roughly speaking, is about **logic steps** towards solving a problem, and this is beyond the scope of this book. Fortunately, at a beginning level, all the algorithms that we need are pretty easy.
+**Algorithm**, roughly speaking, is about **logic steps** towards solving a problem, but it is beyond the scope of this book. Fortunately, at a beginning level, all the algorithms that we need are pretty easy.
 
 We will cover main **data structures** in R in Lesson \@ref(L4).
 
@@ -21,7 +21,7 @@ To learn R, we must learn
 1. `if else`
 1. `for` loop
 1. built-in R functions
-1. self-defined R functions
+1. writing R functions
 1. R packages
 
 Note that items 1 to 5 in the above are in the domain of **base R**; various R packages that we install after having R can be referred to as **extended R**. In this section, we will cover items 1 to 3; items 4 and 5 will be the topics for Lesson \@ref(L5); item 6 will be covered in Lesson \@ref(L6).
@@ -51,7 +51,7 @@ variable_name <- values
 
 1. A variable name contains letters, digits (0-9), `.` (dot) or `_` (underscore).
 1. A variable name normally starts with a letter.
-1. Reserved words words (e.g. `if`) cannot be used as a variable name.
+1. Reserved words (e.g. `if`) cannot be used as a variable name.
 
 ### `if else`
 
