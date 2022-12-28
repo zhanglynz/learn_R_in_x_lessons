@@ -11,7 +11,7 @@ The most useful atomic vectors are **logical**, **integer**, **double** and **ch
 (a_logic_vec <- c(TRUE, FALSE, TRUE))
 (an_integer_vec <- 1L:6L)
 (a_double_vec <- seq(0, 1, by = 0.2))
-(a_character_vec <- c('a', 'b', 'c'))
+(a_character_vec <- c('a', 'b', 'c', '123'))
 ```
 
 We can use R function `typeof()` to find out the type of an atomic vector.
@@ -47,3 +47,50 @@ print(c(a_logic_vec, a_double_vec, a_character_vec))
 ```
 
 ## Structured Vecotrs
+
+In this section, we talk about
+
+- list
+- matrix
+- data frame
+
+A list and an atomic vector share the common property of "a tuple of elements." A list differs an atomic vector in that each element (item) in a list can be **more complex stuff** but not limited to logical/integer/double/character value. Let's have an example
+```{r}
+a_list <- list(item_1 = 1L:3L,
+               item_2 = "I like R",
+               item_3 = c(TRUE, FALSE),
+               item_4 = c(1.8, 2.6, 3.3, 8.9, 10.0))
+(is.list(a_list))
+print(names(a_list))
+print(length(a_list))
+print(lengths(a_list))
+```
+
+In R, a matrix is a vector plus more attributes, and a data frame is a list (but with more attributes). 
+
+- For matrix and data frame, we have the **row-and-column** concept. Columns 1-n in a data frame, correspond to items 1-n, respectively, in a list.
+- All the columns in a matrix must have the same "structure"---e.g. if column 1 is an integer vector of length 5, then all the other columns must be integer vectors of length 5.
+- Columns in a data frame all have the same "length", but they can have different "structures"---e.g. column 1 is a double vector of length 6; column 2 is a character vector of length 6; column 3 is a logical vector of length 6.
+
+**Examples:**
+```{r}
+(a_matrix <- matrix(1L:9L, ncol = 3, nrow = 3, byrow = TRUE))
+(another_matrix <- matrix(letters[1:9], ncol = 3))
+(a_df <- data.frame(ID = letters[1:5],
+                    x = 1:5,
+                    y = "YES",
+                    Z = c(TRUE, FALSE, FALSE, TRUE, FALSE),
+                    stringsAsFactors = FALSE)
+  
+)
+print(dim(a_matrix))
+print(length(a_matrix))
+print(lengths(a_matrix))
+(is.vector(a_matrix)) # this ONLY shows that matrix is NOT atomic vector
+print(dim(a_df))
+print(length(a_df))
+print(lengths(a_df))
+(names(a_df))
+(is.list(a_df))
+```
+
