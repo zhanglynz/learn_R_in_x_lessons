@@ -150,7 +150,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2.3" data-path="L3.html"><a href="L3.html#for-loop"><i class="fa fa-check"></i><b>3.2.3</b> <code>for</code> loop</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="L4.html"><a href="L4.html"><i class="fa fa-check"></i><b>4</b> Lesson 4 Data Structure</a></li>
+<li class="chapter" data-level="4" data-path="L4.html"><a href="L4.html"><i class="fa fa-check"></i><b>4</b> Lesson 4 Data Structure</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="L4.html"><a href="L4.html#atomic-vectors"><i class="fa fa-check"></i><b>4.1</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="4.2" data-path="L4.html"><a href="L4.html#structured-vecotrs"><i class="fa fa-check"></i><b>4.2</b> Structured Vecotrs</a></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="L5.html"><a href="L5.html"><i class="fa fa-check"></i><b>5</b> Lesson 5 R Functions</a></li>
 <li class="chapter" data-level="6" data-path="L6.html"><a href="L6.html"><i class="fa fa-check"></i><b>6</b> Lesson 6 R Packages</a></li>
 <li class="chapter" data-level="7" data-path="L7.html"><a href="L7.html"><i class="fa fa-check"></i><b>7</b> Lesson 7 Making Plots</a></li>
@@ -174,7 +178,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="L4" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">4</span> Lesson 4 Data Structure<a href="L4.html#L4" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In R, the fundamentally important data structure is <strong>vector</strong>, which can be roughly defined as <em>a tuple of elements.</em> We can divide R vectors into two classes: a) <strong>atomic vectors</strong>; b) (other) <strong>structured vectors</strong>.</p>
+<div id="atomic-vectors" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Atomic Vectors<a href="L4.html#atomic-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The most useful atomic vectors are <strong>logical</strong>, <strong>integer</strong>, <strong>double</strong> and <strong>character</strong> types.</p>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="L4.html#cb24-1" aria-hidden="true" tabindex="-1"></a>(a_logic_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="L4.html#cb26-1" aria-hidden="true" tabindex="-1"></a>(an_integer_vec <span class="ot">&lt;-</span> 1L<span class="sc">:</span>6L)</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5 6</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="L4.html#cb28-1" aria-hidden="true" tabindex="-1"></a>(a_double_vec <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="at">by =</span> <span class="fl">0.2</span>))</span></code></pre></div>
+<pre><code>## [1] 0.0 0.2 0.4 0.6 0.8 1.0</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="L4.html#cb30-1" aria-hidden="true" tabindex="-1"></a>(a_character_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;b&#39;</span>, <span class="st">&#39;c&#39;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot;</code></pre>
+<p>We can use R function <code>typeof()</code> to find out the type of an atomic vector.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="L4.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="fu">typeof</span>(a_logic_vec), </span>
+<span id="cb32-2"><a href="L4.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">typeof</span>(an_integer_vec), </span>
+<span id="cb32-3"><a href="L4.html#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">typeof</span>(a_double_vec),</span>
+<span id="cb32-4"><a href="L4.html#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">typeof</span>(a_character_vec))</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;   &quot;integer&quot;   &quot;double&quot;    &quot;character&quot;</code></pre>
+<p>or</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="L4.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vapply</span>(<span class="fu">list</span>(a_logic_vec, </span>
+<span id="cb34-2"><a href="L4.html#cb34-2" aria-hidden="true" tabindex="-1"></a>            an_integer_vec, </span>
+<span id="cb34-3"><a href="L4.html#cb34-3" aria-hidden="true" tabindex="-1"></a>            a_double_vec, </span>
+<span id="cb34-4"><a href="L4.html#cb34-4" aria-hidden="true" tabindex="-1"></a>            a_character_vec), typeof, <span class="fu">character</span>(1L))</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;   &quot;integer&quot;   &quot;double&quot;    &quot;character&quot;</code></pre>
+<p><strong>Important:</strong></p>
+<ol style="list-style-type: decimal">
+<li>When different types of atomic-vector variables are on “operation”, R automatically changes variables’ types. The rule of change is: from <em>low</em> to just <em>high</em> enough. As for “low” and “high”, the order is
+<span class="math display">\[
+\hbox{logical}&lt;\hbox{integer}&lt;\hbox{double}&lt;\hbox{character}
+\]</span>
+Note that when converting from logical to integer, <code>TRUE</code> and <code>FALSE</code> become <code>1L</code> and <code>0L</code>, respectively.</li>
+<li>R function <code>length()</code> gives <em>length</em>—how many elements an atomic vector has.</li>
+<li>When two atomic-vector variables of different lengths are on “operation”, R will firstly recycle the shorter variable.</li>
+</ol>
+<p><strong>Examples:</strong></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="L4.html#cb36-1" aria-hidden="true" tabindex="-1"></a>(a_logic_vec <span class="sc">+</span> an_integer_vec)</span></code></pre></div>
+<pre><code>## [1] 2 2 4 5 5 7</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="L4.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(an_integer_vec, a_double_vec))</span></code></pre></div>
+<pre><code>##  [1] 1.0 2.0 3.0 4.0 5.0 6.0 0.0 0.2 0.4 0.6 0.8 1.0</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="L4.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(a_logic_vec, a_double_vec, a_character_vec))</span></code></pre></div>
+<pre><code>##  [1] &quot;TRUE&quot;  &quot;FALSE&quot; &quot;TRUE&quot;  &quot;0&quot;     &quot;0.2&quot;   &quot;0.4&quot;   &quot;0.6&quot;   &quot;0.8&quot;   &quot;1&quot;    
+## [10] &quot;a&quot;     &quot;b&quot;     &quot;c&quot;</code></pre>
+</div>
+<div id="structured-vecotrs" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Structured Vecotrs<a href="L4.html#structured-vecotrs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
+</div>
 </div>
             </section>
 

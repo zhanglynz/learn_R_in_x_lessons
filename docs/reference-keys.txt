@@ -10,6 +10,8 @@ assignment-statements
 if-else
 for-loop
 L4
+atomic-vectors
+structured-vecotrs
 L5
 L6
 L7

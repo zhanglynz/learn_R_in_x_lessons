@@ -1,1 +1,49 @@
 # Lesson 4 Data Structure {#L4}
+
+In R, the fundamentally important data structure is **vector**, which can be roughly defined as *a tuple of elements.* We can divide R vectors into two classes: a) **atomic vectors**; b) (other) **structured vectors**.
+
+## Atomic Vectors
+
+The most useful atomic vectors are **logical**, **integer**, **double** and **character** types.
+
+**Examples:**
+```{r}
+(a_logic_vec <- c(TRUE, FALSE, TRUE))
+(an_integer_vec <- 1L:6L)
+(a_double_vec <- seq(0, 1, by = 0.2))
+(a_character_vec <- c('a', 'b', 'c'))
+```
+
+We can use R function `typeof()` to find out the type of an atomic vector.
+```{r}
+c(typeof(a_logic_vec), 
+  typeof(an_integer_vec), 
+  typeof(a_double_vec),
+  typeof(a_character_vec))
+```
+or
+```{r}
+vapply(list(a_logic_vec, 
+            an_integer_vec, 
+            a_double_vec, 
+            a_character_vec), typeof, character(1L))
+```
+
+**Important:**
+
+1. When different types of atomic-vector variables are on "operation", R automatically changes variables' types. The rule of change is: from *low* to just *high* enough. As for "low" and "high", the order is
+$$
+\hbox{logical}<\hbox{integer}<\hbox{double}<\hbox{character}
+$$
+Note that when converting from logical to integer, `TRUE` and `FALSE` become `1L` and `0L`, respectively.
+1. R function `length()` gives *length*---how many elements an atomic vector has.
+1. When two atomic-vector variables of different lengths are on "operation", R will firstly recycle the shorter variable. 
+
+**Examples:**
+```{r}
+(a_logic_vec + an_integer_vec)
+print(c(an_integer_vec, a_double_vec))
+print(c(a_logic_vec, a_double_vec, a_character_vec))
+```
+
+## Structured Vecotrs
