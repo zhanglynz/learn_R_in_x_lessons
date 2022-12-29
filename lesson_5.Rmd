@@ -1,1 +1,34 @@
 # Lesson 5 R Functions {#L5}
+
+Keep this in mind: In R, we use functions to get work done. So learning R in some a sense is learning how to use existed R functions and how to create new R functions. Existed R functions are those included in base R and extended R packages. In this lesson, we firstly list some built-in-base-R functions, and then touch upon how to write our own R functions.
+
+## Built-in Base R Functions
+
+Function       |Description           | Example
+:--------------|:---------------------|:-------------
+`:`            |create integer vector | `x <- 1:5`
+`c()`          |for creating vector   | `x <- c(1, 5, 8)`
+`rep()`        |for creating vector   | `x <- rep(0, 100)`
+`seq()`        |for creating vector   | `x <- seq(0, 1, by = 0.2)`
+`length()`     |get vector's length   | `n <- length(x)`
+`print()`      |print out             | `print(x)`
+`list()`       |create a list         | `my_list <- list(a = 1, b = 2:6)`
+`matrix()`     |create a matrix       | `m <- matrix(1:9, 3, 3)`
+`typeof()`     |get vector's type     | `typeof(x)`
+`plot()`       |for plotting          |
+`getwd()`      |get working directory | `getwd()`
+math functions |                      | `abs(x)`; `exp(x)`
+stats functions|                      | `mean(x)`; `sd(x)`;`rnorm(10)`
+
+The following code allows us to see many more built-in-base-R functions:
+```{r, eval=FALSE}
+# Source: https://stackoverflow.com/questions/58476696/list-of-all-functions-in-base-r
+base_packages  <-  getOption('defaultPackages')
+names(base_packages)  <-  base_packages
+lapply(base_packages, function (pkg) ls(paste0('package:', pkg)))
+```
+
+
+## Wrting R Functions
+
+

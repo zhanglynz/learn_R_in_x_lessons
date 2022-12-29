@@ -155,7 +155,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.1" data-path="L4.html"><a href="L4.html#atomic-vectors"><i class="fa fa-check"></i><b>4.1</b> Atomic Vectors</a></li>
 <li class="chapter" data-level="4.2" data-path="L4.html"><a href="L4.html#structured-vecotrs"><i class="fa fa-check"></i><b>4.2</b> Structured Vecotrs</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="L5.html"><a href="L5.html"><i class="fa fa-check"></i><b>5</b> Lesson 5 R Functions</a></li>
+<li class="chapter" data-level="5" data-path="L5.html"><a href="L5.html"><i class="fa fa-check"></i><b>5</b> Lesson 5 R Functions</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="L5.html"><a href="L5.html#built-in-base-r-functions"><i class="fa fa-check"></i><b>5.1</b> Built-in Base R Functions</a></li>
+<li class="chapter" data-level="5.2" data-path="L5.html"><a href="L5.html#wrting-r-functions"><i class="fa fa-check"></i><b>5.2</b> Wrting R Functions</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="L6.html"><a href="L6.html"><i class="fa fa-check"></i><b>6</b> Lesson 6 R Packages</a></li>
 <li class="chapter" data-level="7" data-path="L7.html"><a href="L7.html"><i class="fa fa-check"></i><b>7</b> Lesson 7 Making Plots</a></li>
 <li class="chapter" data-level="8" data-path="L8.html"><a href="L8.html"><i class="fa fa-check"></i><b>8</b> Lesson 8 Data Manipulation</a></li>
@@ -178,7 +182,100 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="L5" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">5</span> Lesson 5 R Functions<a href="L5.html#L5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Keep this in mind: In R, we use functions to get work done. So learning R in some a sense is learning how to use existed R functions and how to create new R functions. Existed R functions are those included in base R and extended R packages. In this lesson, we firstly list some built-in-base-R functions, and then touch upon how to write our own R functions.</p>
+<div id="built-in-base-r-functions" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Built-in Base R Functions<a href="L5.html#built-in-base-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="29%" />
+<col width="43%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Function</th>
+<th align="left">Description</th>
+<th align="left">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>:</code></td>
+<td align="left">create integer vector</td>
+<td align="left"><code>x &lt;- 1:5</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>c()</code></td>
+<td align="left">for creating vector</td>
+<td align="left"><code>x &lt;- c(1, 5, 8)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>rep()</code></td>
+<td align="left">for creating vector</td>
+<td align="left"><code>x &lt;- rep(0, 100)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>seq()</code></td>
+<td align="left">for creating vector</td>
+<td align="left"><code>x &lt;- seq(0, 1, by = 0.2)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>length()</code></td>
+<td align="left">get vector’s length</td>
+<td align="left"><code>n &lt;- length(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>print()</code></td>
+<td align="left">print out</td>
+<td align="left"><code>print(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>list()</code></td>
+<td align="left">create a list</td>
+<td align="left"><code>my_list &lt;- list(a = 1, b = 2:6)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>matrix()</code></td>
+<td align="left">create a matrix</td>
+<td align="left"><code>m &lt;- matrix(1:9, 3, 3)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>typeof()</code></td>
+<td align="left">get vector’s type</td>
+<td align="left"><code>typeof(x)</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>plot()</code></td>
+<td align="left">for plotting</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>getwd()</code></td>
+<td align="left">get working directory</td>
+<td align="left"><code>getwd()</code></td>
+</tr>
+<tr class="even">
+<td align="left">math functions</td>
+<td align="left"></td>
+<td align="left"><code>abs(x)</code>; <code>exp(x)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">stats functions</td>
+<td align="left"></td>
+<td align="left"><code>mean(x)</code>; <code>sd(x)</code>;<code>rnorm(10)</code></td>
+</tr>
+</tbody>
+</table>
+<p>The following code allows us to see many more built-in-base-R functions:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="L5.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source: https://stackoverflow.com/questions/58476696/list-of-all-functions-in-base-r</span></span>
+<span id="cb84-2"><a href="L5.html#cb84-2" aria-hidden="true" tabindex="-1"></a>base_packages  <span class="ot">&lt;-</span>  <span class="fu">getOption</span>(<span class="st">&#39;defaultPackages&#39;</span>)</span>
+<span id="cb84-3"><a href="L5.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(base_packages)  <span class="ot">&lt;-</span>  base_packages</span>
+<span id="cb84-4"><a href="L5.html#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(base_packages, <span class="cf">function</span> (pkg) <span class="fu">ls</span>(<span class="fu">paste0</span>(<span class="st">&#39;package:&#39;</span>, pkg)))</span></code></pre></div>
+</div>
+<div id="wrting-r-functions" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Wrting R Functions<a href="L5.html#wrting-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
+</div>
 </div>
             </section>
 
