@@ -73,7 +73,8 @@ $$
 $$
 Note that when converting from logical to integer, `TRUE` and `FALSE` become `1L` and `0L`, respectively.
 1. R function `length()` gives *length*---how many elements an atomic vector has.
-1. When two atomic-vector variables of different lengths are on "operation", R will firstly recycle the shorter variable. 
+1. When two atomic-vector variables of different lengths are on "operation", R will firstly recycle the shorter variable.
+1. We use `vec[index]` to get values from an atomic vector.
 
 **Examples:**
 
@@ -102,6 +103,14 @@ print(c(a_logic_vec, a_double_vec, a_character_vec))
 ## [10] "a"     "b"     "c"     "123"
 ```
 
+```r
+print(a_character_vec[c(1, 4)])
+```
+
+```
+## [1] "a"   "123"
+```
+
 ## Structured Vecotrs
 
 In this section, we talk about
@@ -110,7 +119,8 @@ In this section, we talk about
 - matrix
 - data frame
 
-A list and an atomic vector share the common property of "a tuple of elements." A list differs an atomic vector in that each element (item) in a list can be **more complex stuff** but not limited to logical/integer/double/character value. Let's have an example
+A list and an atomic vector share the common property of "a tuple of elements." A list differs an atomic vector in that each element (item) in a list can be **more complex stuff** but not limited to logical/integer/double/character value. We use `a_list[[index]]` or `a_list[[item name]]` to have list items.
+Let's have an example
 
 ```r
 a_list <- list(item_1 = 1L:3L,
@@ -149,9 +159,26 @@ print(lengths(a_list))
 ##      3      1      2      5
 ```
 
-In R, a matrix is a vector plus more attributes, and a data frame is a list (but with more attributes). 
+```r
+print(a_list[[2]])
+```
+
+```
+## [1] "I like R"
+```
+
+```r
+print(a_list[["item_2"]])
+```
+
+```
+## [1] "I like R"
+```
+
+In R, a matrix is a vector plus the *dimension attribute*, and a data frame is a list (but with more attributes). 
 
 - For matrix and data frame, we have the **row-and-column** concept. Columns 1-n in a data frame, correspond to items 1-n, respectively, in a list.
+- We can use `a_matrix[index_1, index_2]` to have values in a matrix.
 - All the columns in a matrix must have the same "structure"---e.g. if column 1 is an integer vector of length 5, then all the other columns must be integer vectors of length 5.
 - Columns in a data frame all have the same "length", but they can have different "structures"---e.g. column 1 is a double vector of length 6; column 2 is a character vector of length 6; column 3 is a logical vector of length 6.
 
@@ -226,6 +253,16 @@ print(lengths(a_matrix))
 ```
 
 ```r
+print(a_matrix[2:3, 1:2])
+```
+
+```
+##      [,1] [,2]
+## [1,]    4    5
+## [2,]    7    8
+```
+
+```r
 (is.vector(a_matrix)) # this ONLY shows that matrix is NOT atomic vector
 ```
 
@@ -256,6 +293,14 @@ print(lengths(a_df))
 ```
 ## ID  x  y  Z 
 ##  5  5  5  5
+```
+
+```r
+print(a_df[["ID"]])
+```
+
+```
+## [1] "a" "b" "c" "d" "e"
 ```
 
 ```r

@@ -23,7 +23,7 @@
 <meta name="author" content="Lingyun Zhang" />
 
 
-<meta name="date" content="2022-12-29" />
+<meta name="date" content="2022-12-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -212,6 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 Note that when converting from logical to integer, <code>TRUE</code> and <code>FALSE</code> become <code>1L</code> and <code>0L</code>, respectively.</li>
 <li>R function <code>length()</code> gives <em>length</em>—how many elements an atomic vector has.</li>
 <li>When two atomic-vector variables of different lengths are on “operation”, R will firstly recycle the shorter variable.</li>
+<li>We use <code>vec[index]</code> to get values from an atomic vector.</li>
 </ol>
 <p><strong>Examples:</strong></p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="L4.html#cb36-1" aria-hidden="true" tabindex="-1"></a>(a_logic_vec <span class="sc">+</span> an_integer_vec)</span></code></pre></div>
@@ -221,6 +222,8 @@ Note that when converting from logical to integer, <code>TRUE</code> and <code>F
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="L4.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">c</span>(a_logic_vec, a_double_vec, a_character_vec))</span></code></pre></div>
 <pre><code>##  [1] &quot;TRUE&quot;  &quot;FALSE&quot; &quot;TRUE&quot;  &quot;0&quot;     &quot;0.2&quot;   &quot;0.4&quot;   &quot;0.6&quot;   &quot;0.8&quot;   &quot;1&quot;    
 ## [10] &quot;a&quot;     &quot;b&quot;     &quot;c&quot;     &quot;123&quot;</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="L4.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a_character_vec[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">4</span>)])</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot;   &quot;123&quot;</code></pre>
 </div>
 <div id="structured-vecotrs" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Structured Vecotrs<a href="L4.html#structured-vecotrs" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -230,71 +233,83 @@ Note that when converting from logical to integer, <code>TRUE</code> and <code>F
 <li>matrix</li>
 <li>data frame</li>
 </ul>
-<p>A list and an atomic vector share the common property of “a tuple of elements.” A list differs an atomic vector in that each element (item) in a list can be <strong>more complex stuff</strong> but not limited to logical/integer/double/character value. Let’s have an example</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="L4.html#cb42-1" aria-hidden="true" tabindex="-1"></a>a_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">item_1 =</span> 1L<span class="sc">:</span>3L,</span>
-<span id="cb42-2"><a href="L4.html#cb42-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">item_2 =</span> <span class="st">&quot;I like R&quot;</span>,</span>
-<span id="cb42-3"><a href="L4.html#cb42-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">item_3 =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb42-4"><a href="L4.html#cb42-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">item_4 =</span> <span class="fu">c</span>(<span class="fl">1.8</span>, <span class="fl">2.6</span>, <span class="fl">3.3</span>, <span class="fl">8.9</span>, <span class="fl">10.0</span>))</span>
-<span id="cb42-5"><a href="L4.html#cb42-5" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.list</span>(a_list))</span></code></pre></div>
+<p>A list and an atomic vector share the common property of “a tuple of elements.” A list differs an atomic vector in that each element (item) in a list can be <strong>more complex stuff</strong> but not limited to logical/integer/double/character value. We use <code>a_list[[index]]</code> or <code>a_list[[item name]]</code> to have list items.
+Let’s have an example</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="L4.html#cb44-1" aria-hidden="true" tabindex="-1"></a>a_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">item_1 =</span> 1L<span class="sc">:</span>3L,</span>
+<span id="cb44-2"><a href="L4.html#cb44-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">item_2 =</span> <span class="st">&quot;I like R&quot;</span>,</span>
+<span id="cb44-3"><a href="L4.html#cb44-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">item_3 =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb44-4"><a href="L4.html#cb44-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">item_4 =</span> <span class="fu">c</span>(<span class="fl">1.8</span>, <span class="fl">2.6</span>, <span class="fl">3.3</span>, <span class="fl">8.9</span>, <span class="fl">10.0</span>))</span>
+<span id="cb44-5"><a href="L4.html#cb44-5" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.list</span>(a_list))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="L4.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(a_list))</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="L4.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">names</span>(a_list))</span></code></pre></div>
 <pre><code>## [1] &quot;item_1&quot; &quot;item_2&quot; &quot;item_3&quot; &quot;item_4&quot;</code></pre>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="L4.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">length</span>(a_list))</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="L4.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">length</span>(a_list))</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="L4.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">lengths</span>(a_list))</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="L4.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">lengths</span>(a_list))</span></code></pre></div>
 <pre><code>## item_1 item_2 item_3 item_4 
 ##      3      1      2      5</code></pre>
-<p>In R, a matrix is a vector plus more attributes, and a data frame is a list (but with more attributes).</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="L4.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a_list[[<span class="dv">2</span>]])</span></code></pre></div>
+<pre><code>## [1] &quot;I like R&quot;</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="L4.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a_list[[<span class="st">&quot;item_2&quot;</span>]])</span></code></pre></div>
+<pre><code>## [1] &quot;I like R&quot;</code></pre>
+<p>In R, a matrix is a vector plus the <em>dimension attribute</em>, and a data frame is a list (but with more attributes).</p>
 <ul>
 <li>For matrix and data frame, we have the <strong>row-and-column</strong> concept. Columns 1-n in a data frame, correspond to items 1-n, respectively, in a list.</li>
+<li>We can use <code>a_matrix[index_1, index_2]</code> to have values in a matrix.</li>
 <li>All the columns in a matrix must have the same “structure”—e.g. if column 1 is an integer vector of length 5, then all the other columns must be integer vectors of length 5.</li>
 <li>Columns in a data frame all have the same “length”, but they can have different “structures”—e.g. column 1 is a double vector of length 6; column 2 is a character vector of length 6; column 3 is a logical vector of length 6.</li>
 </ul>
 <p><strong>Examples:</strong></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="L4.html#cb50-1" aria-hidden="true" tabindex="-1"></a>(a_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(1L<span class="sc">:</span>9L, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="L4.html#cb56-1" aria-hidden="true" tabindex="-1"></a>(a_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(1L<span class="sc">:</span>9L, <span class="at">ncol =</span> <span class="dv">3</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    2    3
 ## [2,]    4    5    6
 ## [3,]    7    8    9</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="L4.html#cb52-1" aria-hidden="true" tabindex="-1"></a>(another_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>], <span class="at">ncol =</span> <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="L4.html#cb58-1" aria-hidden="true" tabindex="-1"></a>(another_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>], <span class="at">ncol =</span> <span class="dv">3</span>))</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,] &quot;a&quot;  &quot;d&quot;  &quot;g&quot; 
 ## [2,] &quot;b&quot;  &quot;e&quot;  &quot;h&quot; 
 ## [3,] &quot;c&quot;  &quot;f&quot;  &quot;i&quot;</code></pre>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="L4.html#cb54-1" aria-hidden="true" tabindex="-1"></a>(a_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
-<span id="cb54-2"><a href="L4.html#cb54-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
-<span id="cb54-3"><a href="L4.html#cb54-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> <span class="st">&quot;YES&quot;</span>,</span>
-<span id="cb54-4"><a href="L4.html#cb54-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Z =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb54-5"><a href="L4.html#cb54-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb54-6"><a href="L4.html#cb54-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb54-7"><a href="L4.html#cb54-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="L4.html#cb60-1" aria-hidden="true" tabindex="-1"></a>(a_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb60-2"><a href="L4.html#cb60-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb60-3"><a href="L4.html#cb60-3" aria-hidden="true" tabindex="-1"></a>                    <span class="at">y =</span> <span class="st">&quot;YES&quot;</span>,</span>
+<span id="cb60-4"><a href="L4.html#cb60-4" aria-hidden="true" tabindex="-1"></a>                    <span class="at">Z =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb60-5"><a href="L4.html#cb60-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb60-6"><a href="L4.html#cb60-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb60-7"><a href="L4.html#cb60-7" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <pre><code>##   ID x   y     Z
 ## 1  a 1 YES  TRUE
 ## 2  b 2 YES FALSE
 ## 3  c 3 YES FALSE
 ## 4  d 4 YES  TRUE
 ## 5  e 5 YES FALSE</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="L4.html#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(a_matrix))</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="L4.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(a_matrix))</span></code></pre></div>
 <pre><code>## [1] 3 3</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="L4.html#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">length</span>(a_matrix))</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="L4.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">length</span>(a_matrix))</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="L4.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">lengths</span>(a_matrix))</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="L4.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">lengths</span>(a_matrix))</span></code></pre></div>
 <pre><code>##      [,1] [,2] [,3]
 ## [1,]    1    1    1
 ## [2,]    1    1    1
 ## [3,]    1    1    1</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="L4.html#cb62-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.vector</span>(a_matrix)) <span class="co"># this ONLY shows that matrix is NOT atomic vector</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="L4.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a_matrix[<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    4    5
+## [2,]    7    8</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="L4.html#cb70-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.vector</span>(a_matrix)) <span class="co"># this ONLY shows that matrix is NOT atomic vector</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="L4.html#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(a_df))</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="L4.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">dim</span>(a_df))</span></code></pre></div>
 <pre><code>## [1] 5 4</code></pre>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="L4.html#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">length</span>(a_df))</span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="L4.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">length</span>(a_df))</span></code></pre></div>
 <pre><code>## [1] 4</code></pre>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="L4.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">lengths</span>(a_df))</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="L4.html#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">lengths</span>(a_df))</span></code></pre></div>
 <pre><code>## ID  x  y  Z 
 ##  5  5  5  5</code></pre>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="L4.html#cb70-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">names</span>(a_df))</span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="L4.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(a_df[[<span class="st">&quot;ID&quot;</span>]])</span></code></pre></div>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot;</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="L4.html#cb80-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">names</span>(a_df))</span></code></pre></div>
 <pre><code>## [1] &quot;ID&quot; &quot;x&quot;  &quot;y&quot;  &quot;Z&quot;</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="L4.html#cb72-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.list</span>(a_df))</span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="L4.html#cb82-1" aria-hidden="true" tabindex="-1"></a>(<span class="fu">is.list</span>(a_df))</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 
 </div>
