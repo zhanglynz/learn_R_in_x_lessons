@@ -60,3 +60,45 @@ These articles may be of our interest:
 
 ## Writing R Packages
 
+The following steps are distilled from Chapter 2 of Hadley Wickham and Jenny Bryan (https://r-pkgs.org/).
+
+I am going to make an R package called `BookStarter`.
+
+- Preparation: Create an empty repo at Github, e.g. "git@github.com:zhanglynz/BookStarter.git"
+- Use `create_package()` (only once) to scaffold a new R package
+````
+library(devtools)
+create_package("F:/Projects/BookStarter") 
+````
+- Use `use_r()` to start an  R function (in a new session)
+```` 
+library(devtools)
+use_r("start_book") 
+In the source editor and put the cursor at the start of the new function
+Now do Code > Insert roxygen skeleton
+````
+- `load_all()`
+- `check()`
+- Edit DESCRIPTION
+- Use `use_mit_license()` (only use once)
+- Use `document()` to create help document for the function
+- `check()` # again
+- Testing
+````
+use_testthat() # only use it once
+use_test("start_book")
+````
+- Use `use_package("some_a_package")` to add  dependence
+- Gitlab/Github # Git the project; push to Gitlab
+````
+# push an existing repository from the command line
+git init
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:zhanglynz/BookStarter.git
+git push -u origin main
+````
+- `use_readme_rmd()` # only use it once
+- `check()` # again 
+- `install()`
+

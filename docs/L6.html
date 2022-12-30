@@ -270,6 +270,47 @@ Among these 29 packages, <strong>ggplot2</strong>, <strong>dplyr</strong>, <stro
 </div>
 <div id="writing-r-packages" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Writing R Packages<a href="L6.html#writing-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The following steps are distilled from Chapter 2 of Hadley Wickham and Jenny Bryan (<a href="https://r-pkgs.org/" class="uri">https://r-pkgs.org/</a>).</p>
+<p>I am going to make an R package called <code>BookStarter</code>.</p>
+<ul>
+<li>Preparation: Create an empty repo at Github, e.g. “<a href="mailto:git@github.com" class="email">git@github.com</a>:zhanglynz/BookStarter.git”</li>
+<li>Use <code>create_package()</code> (only once) to scaffold a new R package</li>
+</ul>
+<pre><code>library(devtools)
+create_package(&quot;F:/Projects/BookStarter&quot;) </code></pre>
+<ul>
+<li>Use <code>use_r()</code> to start an R function (in a new session)</li>
+</ul>
+<pre><code>library(devtools)
+use_r(&quot;start_book&quot;) 
+In the source editor and put the cursor at the start of the new function
+Now do Code &gt; Insert roxygen skeleton</code></pre>
+<ul>
+<li><code>load_all()</code></li>
+<li><code>check()</code></li>
+<li>Edit DESCRIPTION</li>
+<li>Use <code>use_mit_license()</code> (only use once)</li>
+<li>Use <code>document()</code> to create help document for the function</li>
+<li><code>check()</code> # again</li>
+<li>Testing</li>
+</ul>
+<pre><code>use_testthat() # only use it once
+use_test(&quot;start_book&quot;)</code></pre>
+<ul>
+<li>Use <code>use_package("some_a_package")</code> to add dependence</li>
+<li>Gitlab/Github # Git the project; push to Gitlab</li>
+</ul>
+<pre><code># push an existing repository from the command line
+git init
+git commit -m &quot;first commit&quot;
+git branch -M main
+git remote add origin git@github.com:zhanglynz/BookStarter.git
+git push -u origin main</code></pre>
+<ul>
+<li><code>use_readme_rmd()</code> # only use it once</li>
+<li><code>check()</code> # again</li>
+<li><code>install()</code></li>
+</ul>
 
 </div>
 </div>
