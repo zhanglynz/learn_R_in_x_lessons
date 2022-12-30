@@ -53,6 +53,8 @@ These articles may be of our interest:
 
 - https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages
 - https://www.datacamp.com/tutorial/top-ten-most-important-packages-in-r-for-data-science
+- https://www.r-bloggers.com/2021/04/15-essential-packages-in-r-for-data-science/
+- https://towardsdatascience.com/the-most-underrated-r-packages-254e4a6516a1
 
 
 
