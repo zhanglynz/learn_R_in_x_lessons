@@ -70,11 +70,11 @@ get_sum_of_words <- function(word_vec)
 {unlist(lapply(word_vec, get_sum_of_a_word))
 }
 # testing
-get_sum_of_a_word("aabbcd")
+get_sum_of_a_word("aabbcde")
 ```
 
 ```
-## [1] 13
+## [1] 18
 ```
 
 ```r
@@ -93,8 +93,7 @@ add_subtr_multi <- function(x, y, method = c("sum", "subtract", "multipliction")
  switch(method,
         "sum" = x + y,
         "subtract" = x - y,
-        "multipliction" = x * y,
-        stop("Invalid operation!"))
+        "multipliction" = x * y)
 }
 # testing
 add_subtr_multi(1, 2, "sum")
@@ -130,8 +129,7 @@ create_an_op <- function(op = c("sum", "subtract", "multipliction"))
    switch(op,
           "sum" = x + y,
           "subtract" = x - y,
-          "multipliction" = x * y,
-          stop("Invalid operation!"))
+          "multipliction" = x * y)
            
  }
 }
