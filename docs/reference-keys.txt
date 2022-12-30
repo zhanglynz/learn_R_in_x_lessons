@@ -18,5 +18,7 @@ wrting-r-functions
 basics
 tips
 L6
+extended-r-packages
+writing-r-packages
 L7
 L8

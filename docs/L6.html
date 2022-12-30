@@ -164,7 +164,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="L5.html"><a href="L5.html#tips"><i class="fa fa-check"></i><b>5.2.2</b> Tips</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="L6.html"><a href="L6.html"><i class="fa fa-check"></i><b>6</b> Lesson 6 R Packages</a></li>
+<li class="chapter" data-level="6" data-path="L6.html"><a href="L6.html"><i class="fa fa-check"></i><b>6</b> Lesson 6 R Packages</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="L6.html"><a href="L6.html#extended-r-packages"><i class="fa fa-check"></i><b>6.1</b> Extended R Packages</a></li>
+<li class="chapter" data-level="6.2" data-path="L6.html"><a href="L6.html#writing-r-packages"><i class="fa fa-check"></i><b>6.2</b> Writing R Packages</a></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="L7.html"><a href="L7.html"><i class="fa fa-check"></i><b>7</b> Lesson 7 Making Plots</a></li>
 <li class="chapter" data-level="8" data-path="L8.html"><a href="L8.html"><i class="fa fa-check"></i><b>8</b> Lesson 8 Data Manipulation</a></li>
 </ul>
@@ -186,7 +190,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="L6" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">6</span> Lesson 6 R Packages<a href="L6.html#L6" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>An R package basically is package of R functions plus metadata and documentations.</p>
+<p>Base R (the R that we download from CRAN) has at least these R packages</p>
+<ul>
+<li>base</li>
+<li>methods</li>
+<li>stats</li>
+<li>utils</li>
+<li>graphics</li>
+<li>grDevices</li>
+<li>datasets</li>
+</ul>
+<p>We call all the other packages that not included in base R <strong>extended R packages</strong>. In this lesson, we will very briefly introduce some extended R packages, and then touch upon writing R packages.</p>
+<div id="extended-r-packages" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Extended R Packages<a href="L6.html#extended-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="36%" />
+<col width="64%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">package name</th>
+<th align="left">remarks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>tidyverse</code></td>
+<td align="left">a set of packages; for data manipulation/analysis/visualization</td>
+</tr>
+<tr class="even">
+<td align="left"><code>data.table</code></td>
+<td align="left">for data manipulation; enabling fast code</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>lubridate</code></td>
+<td align="left">for dealing with dates, times etc.</td>
+</tr>
+<tr class="even">
+<td align="left"><code>shiny</code></td>
+<td align="left">for creating shiny apps</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bookdown</code></td>
+<td align="left">for writing books</td>
+</tr>
+<tr class="even">
+<td align="left"><code>blogdown</code></td>
+<td align="left">for creating web sites</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>devtools</code></td>
+<td align="left">for creating R packages</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NB:</strong> We can see all packages included in <code>tidyverse</code></p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="L6.html#cb102-1" aria-hidden="true" tabindex="-1"></a>tidy_pkgs <span class="ot">&lt;-</span> tidyverse<span class="sc">::</span><span class="fu">tidyverse_packages</span>(<span class="at">include_self =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb102-2"><a href="L6.html#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(tidy_pkgs)</span></code></pre></div>
+<pre><code>##  [1] &quot;broom&quot;         &quot;cli&quot;           &quot;crayon&quot;        &quot;dbplyr&quot;       
+##  [5] &quot;dplyr&quot;         &quot;dtplyr&quot;        &quot;forcats&quot;       &quot;ggplot2&quot;      
+##  [9] &quot;googledrive&quot;   &quot;googlesheets4&quot; &quot;haven&quot;         &quot;hms&quot;          
+## [13] &quot;httr&quot;          &quot;jsonlite&quot;      &quot;lubridate&quot;     &quot;magrittr&quot;     
+## [17] &quot;modelr&quot;        &quot;pillar&quot;        &quot;purrr&quot;         &quot;readr&quot;        
+## [21] &quot;readxl&quot;        &quot;reprex&quot;        &quot;rlang&quot;         &quot;rstudioapi&quot;   
+## [25] &quot;rvest&quot;         &quot;stringr&quot;       &quot;tibble&quot;        &quot;tidyr&quot;        
+## [29] &quot;xml2&quot;</code></pre>
+<p>We can Install all these packages in the tidyverse by running <code>install.packages("tidyverse")</code> .
+Among these 29 packages, <strong>ggplot2</strong>, <strong>dplyr</strong>, <strong>tidyr</strong>,
+<strong>readr</strong>, <strong>purrr</strong>, <strong>tibble</strong>, <strong>stringr</strong>, and <strong>forcats</strong> are the so-called <em>core packages</em>, which will be loaded all together if we run <code>library(tidyverse)</code>. See this: <a href="https://www.tidyverse.org/packages/" class="uri">https://www.tidyverse.org/packages/</a></p>
+<p>These articles may be of our interest:</p>
+<ul>
+<li><a href="https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages" class="uri">https://support.posit.co/hc/en-us/articles/201057987-Quick-list-of-useful-R-packages</a></li>
+<li><a href="https://www.datacamp.com/tutorial/top-ten-most-important-packages-in-r-for-data-science" class="uri">https://www.datacamp.com/tutorial/top-ten-most-important-packages-in-r-for-data-science</a></li>
+</ul>
+</div>
+<div id="writing-r-packages" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Writing R Packages<a href="L6.html#writing-r-packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
+</div>
 </div>
             </section>
 
