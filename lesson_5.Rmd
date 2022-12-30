@@ -50,10 +50,10 @@ Some points:
 
 - Use "divide and conquer" strategy to break a big task into small ones, and **write a function for each small task rather than write a huge function** for the big task. The advantages of this approach are: a) easier for debugging and maintenance; b) some small functions may be useful for other tasks.
 - Use `lapply()` and other helper functions (e.g. `unlist()`) to give a vectorized function---see this in the following example, "get sum of words".
-- Use `match.arg()`---see this in the following example, "add, subtract and multiply".
+- Using `match.arg()`---see this in the following example, "add, subtract and multiply".
 - Function factory---see this in the following example, "create an operation".
 
-**Example:** get sum of word
+**Example:** get sum of words
 ```{r}
 letter_to_nbr <- function(a_letter) 
 {which(letters %in% a_letter)

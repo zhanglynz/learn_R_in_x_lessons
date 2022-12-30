@@ -296,10 +296,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>Use “divide and conquer” strategy to break a big task into small ones, and <strong>write a function for each small task rather than write a huge function</strong> for the big task. The advantages of this approach are: a) easier for debugging and maintenance; b) some small functions may be useful for other tasks.</li>
 <li>Use <code>lapply()</code> and other helper functions (e.g. <code>unlist()</code>) to give a vectorized function—see this in the following example, “get sum of words”.</li>
-<li>Use <code>match.arg()</code>—see this in the following example, “add, subtract and multiply”.</li>
+<li>Using <code>match.arg()</code>—see this in the following example, “add, subtract and multiply”.</li>
 <li>Function factory—see this in the following example, “create an operation”.</li>
 </ul>
-<p><strong>Example:</strong> get sum of word</p>
+<p><strong>Example:</strong> get sum of words</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="L5.html#cb86-1" aria-hidden="true" tabindex="-1"></a>letter_to_nbr <span class="ot">&lt;-</span> <span class="cf">function</span>(a_letter) </span>
 <span id="cb86-2"><a href="L5.html#cb86-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">which</span>(letters <span class="sc">%in%</span> a_letter)</span>
 <span id="cb86-3"><a href="L5.html#cb86-3" aria-hidden="true" tabindex="-1"></a>}</span>
