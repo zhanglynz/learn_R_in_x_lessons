@@ -158,7 +158,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="L5.html"><a href="L5.html"><i class="fa fa-check"></i><b>5</b> Lesson 5 R Functions</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="L5.html"><a href="L5.html#built-in-base-r-functions"><i class="fa fa-check"></i><b>5.1</b> Built-in Base R Functions</a></li>
-<li class="chapter" data-level="5.2" data-path="L5.html"><a href="L5.html#wrting-r-functions"><i class="fa fa-check"></i><b>5.2</b> Wrting R Functions</a></li>
+<li class="chapter" data-level="5.2" data-path="L5.html"><a href="L5.html#wrting-r-functions"><i class="fa fa-check"></i><b>5.2</b> Wrting R Functions</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="L5.html"><a href="L5.html#basics"><i class="fa fa-check"></i><b>5.2.1</b> Basics</a></li>
+<li class="chapter" data-level="5.2.2" data-path="L5.html"><a href="L5.html#tips"><i class="fa fa-check"></i><b>5.2.2</b> Tips</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="L6.html"><a href="L6.html"><i class="fa fa-check"></i><b>6</b> Lesson 6 R Packages</a></li>
 <li class="chapter" data-level="7" data-path="L7.html"><a href="L7.html"><i class="fa fa-check"></i><b>7</b> Lesson 7 Making Plots</a></li>
@@ -274,7 +278,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="wrting-r-functions" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Wrting R Functions<a href="L5.html#wrting-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="basics" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Basics<a href="L5.html#basics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>An R function looks like</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="L5.html#cb85-1" aria-hidden="true" tabindex="-1"></a>func_name <span class="ot">&lt;-</span> <span class="cf">function</span>(arguments)</span>
+<span id="cb85-2"><a href="L5.html#cb85-2" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb85-3"><a href="L5.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  body</span>
+<span id="cb85-4"><a href="L5.html#cb85-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Some points:</p>
+<ul>
+<li>“Generally, function names should be verbs, and arguments should be nouns.” (Wickham and Grolemund, <a href="https://r4ds.had.co.nz/functions.html" class="uri">https://r4ds.had.co.nz/functions.html</a>) This is a good convention; anyway, function names should make sense and often should be self explained.</li>
+<li>The body part can have many lines of R code; the last line is often <code>return(an_object)</code> (<code>an_object</code> can be an atomic vector, matrix, data frame or list)</li>
+</ul>
+</div>
+<div id="tips" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Tips<a href="L5.html#tips" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Use “divide and conquer” strategy to break a big task into small ones, and <strong>write a function for each small task rather than write a huge function</strong> for the big task. The advantages of this approach are: a) easier for debugging and maintenance; b) some small functions may be useful for other tasks.</li>
+<li>Use <code>lapply()</code> and other helper functions (e.g. <code>unlist()</code>) to give a vectorized function—see this in the following example, “get sum of words”.</li>
+<li>Use <code>match.arg()</code>—see this in the following example, “add, subtract and multiply”.</li>
+<li>Function factory—see this in the following example, “create an operation”.</li>
+</ul>
+<p><strong>Example:</strong> get sum of word</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="L5.html#cb86-1" aria-hidden="true" tabindex="-1"></a>letter_to_nbr <span class="ot">&lt;-</span> <span class="cf">function</span>(a_letter) </span>
+<span id="cb86-2"><a href="L5.html#cb86-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">which</span>(letters <span class="sc">%in%</span> a_letter)</span>
+<span id="cb86-3"><a href="L5.html#cb86-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb86-4"><a href="L5.html#cb86-4" aria-hidden="true" tabindex="-1"></a>get_sum_of_a_word <span class="ot">&lt;-</span> <span class="cf">function</span>(a_word)</span>
+<span id="cb86-5"><a href="L5.html#cb86-5" aria-hidden="true" tabindex="-1"></a>{chars <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(a_word, <span class="at">split =</span> <span class="st">&quot;&quot;</span>))</span>
+<span id="cb86-6"><a href="L5.html#cb86-6" aria-hidden="true" tabindex="-1"></a> the_nbrs <span class="ot">&lt;-</span> <span class="fu">vapply</span>(chars, letter_to_nbr, <span class="fu">numeric</span>(<span class="dv">1</span>))</span>
+<span id="cb86-7"><a href="L5.html#cb86-7" aria-hidden="true" tabindex="-1"></a> <span class="fu">return</span>(<span class="fu">sum</span>(the_nbrs))</span>
+<span id="cb86-8"><a href="L5.html#cb86-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb86-9"><a href="L5.html#cb86-9" aria-hidden="true" tabindex="-1"></a>get_sum_of_words <span class="ot">&lt;-</span> <span class="cf">function</span>(word_vec)</span>
+<span id="cb86-10"><a href="L5.html#cb86-10" aria-hidden="true" tabindex="-1"></a>{<span class="fu">unlist</span>(<span class="fu">lapply</span>(word_vec, get_sum_of_a_word))</span>
+<span id="cb86-11"><a href="L5.html#cb86-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb86-12"><a href="L5.html#cb86-12" aria-hidden="true" tabindex="-1"></a><span class="co"># testing</span></span>
+<span id="cb86-13"><a href="L5.html#cb86-13" aria-hidden="true" tabindex="-1"></a><span class="fu">get_sum_of_a_word</span>(<span class="st">&quot;aabbcd&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 13</code></pre>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="L5.html#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get_sum_of_words</span>(<span class="fu">c</span>(<span class="st">&#39;a&#39;</span>, <span class="st">&#39;ab&#39;</span>, <span class="st">&#39;abc&#39;</span>))</span></code></pre></div>
+<pre><code>## [1] 1 3 6</code></pre>
+<p><strong>Example:</strong> using <code>match.arg()</code></p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="L5.html#cb90-1" aria-hidden="true" tabindex="-1"></a>add_subtr_multi <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;subtract&quot;</span>, <span class="st">&quot;multipliction&quot;</span>))</span>
+<span id="cb90-2"><a href="L5.html#cb90-2" aria-hidden="true" tabindex="-1"></a>{method <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(method)</span>
+<span id="cb90-3"><a href="L5.html#cb90-3" aria-hidden="true" tabindex="-1"></a> <span class="cf">switch</span>(method,</span>
+<span id="cb90-4"><a href="L5.html#cb90-4" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;sum&quot;</span> <span class="ot">=</span> x <span class="sc">+</span> y,</span>
+<span id="cb90-5"><a href="L5.html#cb90-5" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;subtract&quot;</span> <span class="ot">=</span> x <span class="sc">-</span> y,</span>
+<span id="cb90-6"><a href="L5.html#cb90-6" aria-hidden="true" tabindex="-1"></a>        <span class="st">&quot;multipliction&quot;</span> <span class="ot">=</span> x <span class="sc">*</span> y,</span>
+<span id="cb90-7"><a href="L5.html#cb90-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">stop</span>(<span class="st">&quot;Invalid operation!&quot;</span>))</span>
+<span id="cb90-8"><a href="L5.html#cb90-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb90-9"><a href="L5.html#cb90-9" aria-hidden="true" tabindex="-1"></a><span class="co"># testing</span></span>
+<span id="cb90-10"><a href="L5.html#cb90-10" aria-hidden="true" tabindex="-1"></a><span class="fu">add_subtr_multi</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">&quot;sum&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="L5.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_subtr_multi</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="st">&quot;subtract&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="L5.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">add_subtr_multi</span>(<span class="dv">10</span>, <span class="dv">10</span>, <span class="st">&quot;multipliction&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
+<p><strong>Example:</strong> function factory</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="L5.html#cb96-1" aria-hidden="true" tabindex="-1"></a>create_an_op <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">op =</span> <span class="fu">c</span>(<span class="st">&quot;sum&quot;</span>, <span class="st">&quot;subtract&quot;</span>, <span class="st">&quot;multipliction&quot;</span>))</span>
+<span id="cb96-2"><a href="L5.html#cb96-2" aria-hidden="true" tabindex="-1"></a>{op <span class="ot">&lt;-</span> <span class="fu">match.arg</span>(op)</span>
+<span id="cb96-3"><a href="L5.html#cb96-3" aria-hidden="true" tabindex="-1"></a> <span class="cf">function</span>(x, y) {</span>
+<span id="cb96-4"><a href="L5.html#cb96-4" aria-hidden="true" tabindex="-1"></a>   <span class="cf">switch</span>(op,</span>
+<span id="cb96-5"><a href="L5.html#cb96-5" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;sum&quot;</span> <span class="ot">=</span> x <span class="sc">+</span> y,</span>
+<span id="cb96-6"><a href="L5.html#cb96-6" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;subtract&quot;</span> <span class="ot">=</span> x <span class="sc">-</span> y,</span>
+<span id="cb96-7"><a href="L5.html#cb96-7" aria-hidden="true" tabindex="-1"></a>          <span class="st">&quot;multipliction&quot;</span> <span class="ot">=</span> x <span class="sc">*</span> y,</span>
+<span id="cb96-8"><a href="L5.html#cb96-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">stop</span>(<span class="st">&quot;Invalid operation!&quot;</span>))</span>
+<span id="cb96-9"><a href="L5.html#cb96-9" aria-hidden="true" tabindex="-1"></a>           </span>
+<span id="cb96-10"><a href="L5.html#cb96-10" aria-hidden="true" tabindex="-1"></a> }</span>
+<span id="cb96-11"><a href="L5.html#cb96-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb96-12"><a href="L5.html#cb96-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb96-13"><a href="L5.html#cb96-13" aria-hidden="true" tabindex="-1"></a><span class="co"># testing</span></span>
+<span id="cb96-14"><a href="L5.html#cb96-14" aria-hidden="true" tabindex="-1"></a>plus_op <span class="ot">&lt;-</span> <span class="fu">create_an_op</span>(<span class="st">&quot;sum&quot;</span>)</span>
+<span id="cb96-15"><a href="L5.html#cb96-15" aria-hidden="true" tabindex="-1"></a>subtr_op <span class="ot">&lt;-</span> <span class="fu">create_an_op</span>(<span class="st">&quot;subtract&quot;</span>)</span>
+<span id="cb96-16"><a href="L5.html#cb96-16" aria-hidden="true" tabindex="-1"></a>multi_op <span class="ot">&lt;-</span> <span class="fu">create_an_op</span>(<span class="st">&quot;multipliction&quot;</span>)</span>
+<span id="cb96-17"><a href="L5.html#cb96-17" aria-hidden="true" tabindex="-1"></a><span class="fu">plus_op</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="L5.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">subtr_op</span>(<span class="dv">1</span>, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] -1</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="L5.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multi_op</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 100</code></pre>
 
+</div>
 </div>
 </div>
             </section>

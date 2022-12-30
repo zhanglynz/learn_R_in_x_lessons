@@ -31,4 +31,83 @@ lapply(base_packages, function (pkg) ls(paste0('package:', pkg)))
 
 ## Wrting R Functions
 
+### Basics 
+
+An R function looks like
+```{r, eval=FALSE}
+func_name <- function(arguments)
+{
+  body
+}
+```
+
+Some points:
+
+- "Generally, function names should be verbs, and arguments should be nouns." (Wickham and Grolemund, https://r4ds.had.co.nz/functions.html) This is a good convention; anyway, function names should make sense and often should be self explained.
+- The body part can have many lines of R code; the last line is often `return(an_object)` (`an_object` can be an atomic vector, matrix, data frame or list) 
+
+### Tips 
+
+- Use "divide and conquer" strategy to break a big task into small ones, and **write a function for each small task rather than write a huge function** for the big task. The advantages of this approach are: a) easier for debugging and maintenance; b) some small functions may be useful for other tasks.
+- Use `lapply()` and other helper functions (e.g. `unlist()`) to give a vectorized function---see this in the following example, "get sum of words".
+- Use `match.arg()`---see this in the following example, "add, subtract and multiply".
+- Function factory---see this in the following example, "create an operation".
+
+**Example:** get sum of word
+```{r}
+letter_to_nbr <- function(a_letter) 
+{which(letters %in% a_letter)
+}
+get_sum_of_a_word <- function(a_word)
+{chars <- unlist(strsplit(a_word, split = ""))
+ the_nbrs <- vapply(chars, letter_to_nbr, numeric(1))
+ return(sum(the_nbrs))
+}
+get_sum_of_words <- function(word_vec)
+{unlist(lapply(word_vec, get_sum_of_a_word))
+}
+# testing
+get_sum_of_a_word("aabbcd")
+get_sum_of_words(c('a', 'ab', 'abc'))
+```
+
+**Example:** using `match.arg()`
+```{r}
+add_subtr_multi <- function(x, y, method = c("sum", "subtract", "multipliction"))
+{method <- match.arg(method)
+ switch(method,
+        "sum" = x + y,
+        "subtract" = x - y,
+        "multipliction" = x * y,
+        stop("Invalid operation!"))
+}
+# testing
+add_subtr_multi(1, 2, "sum")
+add_subtr_multi(2, 1, "subtract")
+add_subtr_multi(10, 10, "multipliction")
+```
+
+
+**Example:** function factory
+```{r}
+create_an_op <- function(op = c("sum", "subtract", "multipliction"))
+{op <- match.arg(op)
+ function(x, y) {
+   switch(op,
+          "sum" = x + y,
+          "subtract" = x - y,
+          "multipliction" = x * y,
+          stop("Invalid operation!"))
+           
+ }
+}
+
+# testing
+plus_op <- create_an_op("sum")
+subtr_op <- create_an_op("subtract")
+multi_op <- create_an_op("multipliction")
+plus_op(1, 2)
+subtr_op(1, 2)
+multi_op(10, 10)
+```
 
