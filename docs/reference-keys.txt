@@ -11,7 +11,10 @@ if-else
 for-loop
 L4
 atomic-vectors
-structured-vecotrs
+lists
+matrices
+data-frames
+factors-and-dates
 L5
 built-in-base-r-functions
 wrting-r-functions

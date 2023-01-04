@@ -1,6 +1,18 @@
-# Lesson 4 Data Structure {#L4}
+# Lesson 4 Data Structures {#L4}
 
-In R, the fundamentally important data structure is **vector**, which can be roughly defined as *a tuple of elements.* We can divide R vectors into two classes: a) **atomic vectors**; b) (other) **structured vectors**.
+**Acknowledgments:** This chapter is written after I read Chapter 3 of Hadley Wickham's book, *Advanced R* 2nd Ed, https://adv-r.hadley.nz/vectors-chap.html
+
+
+In R, the fundamentally important data structure is **vector,** which can be roughly defined as *a tuple of elements.* R vectors include **atomic vectors** and **lists**^[According to Hadley Wickham, *Advanced R* 2nd Ed., "`NULL` is closely related to vectors and often serves the role of a generic zero length vector."]. Other R data structures are built upon vectors by adding more *attributes.* Talking about attributes, I want to quote words from Hadley Wickham (*Advanced R* 2nd Ed, https://adv-r.hadley.nz/vectors-chap.html):
+
+>
+The most important attributes are names, dimensions and class.
+>
+
+>
+Two attributes are particularly important. The dimension attribute turns vectors into matrices and arrays and the class attribute powers the S3 object system.
+>
+
 
 ## Atomic Vectors
 
@@ -10,7 +22,8 @@ The most useful atomic vectors are **logical**, **integer**, **double** and **ch
 ```{r}
 (a_logic_vec <- c(TRUE, FALSE, TRUE))
 (an_integer_vec <- 1L:6L)
-(a_double_vec <- seq(0, 1, by = 0.2))
+(a_double_vec <- c(1, 2, 3, 4, 5, 6))
+(identical(an_integer_vec, a_double_vec))
 (a_character_vec <- c('a', 'b', 'c', '123'))
 ```
 
@@ -38,7 +51,7 @@ $$
 Note that when converting from logical to integer, `TRUE` and `FALSE` become `1L` and `0L`, respectively.
 1. R function `length()` gives *length*---how many elements an atomic vector has.
 1. When two atomic-vector variables of different lengths are on "operation", R will firstly recycle the shorter variable.
-1. We use `vec[index]` to get values from an atomic vector.
+1. We use `vec[index]` or other ways^[For details see Hadley Wickham, https://adv-r.hadley.nz/subsetting.html]  to get values from an atomic vector.
 
 **Examples:**
 ```{r}
@@ -48,15 +61,22 @@ print(c(a_logic_vec, a_double_vec, a_character_vec))
 print(a_character_vec[c(1, 4)])
 ```
 
-## Structured Vecotrs
+```{r}
+a <- c(1, 1e3, 1e5)
+b <- c(1L, 1e3L, 1e5L)
+(a == b) # type changes when on operation
+(identical(a, b))
+(as.character(a)) # interesting!
+(as.character(b))
+(as.character(as.integer(a))) # this might be useful in practice.
+```
 
-In this section, we talk about
 
-- list
-- matrix
-- data frame
+## Lists
 
-A list and an atomic vector share the common property of "a tuple of elements." A list differs an atomic vector in that each element (item) in a list can be **more complex stuff** but not limited to logical/integer/double/character value. We use `a_list[[index]]` or `a_list[[item name]]` to have list items.
+A list and an atomic vector share the common property of "a tuple of elements." A list differs an atomic vector in that each element (item) in a list can be **more complex stuff** but not limited to a logical/integer/double/character value. We use 
+`a_list[index]` to subset a list, and we use 
+`a_list[[index]]` or `a_list[[item name]]` to have **one item** from a list.
 Let's have an example
 ```{r}
 a_list <- list(item_1 = 1L:3L,
@@ -67,38 +87,74 @@ a_list <- list(item_1 = 1L:3L,
 print(names(a_list))
 print(length(a_list))
 print(lengths(a_list))
+print(a_list[c(1, 2)])
+print(a_list[2])
 print(a_list[[2]])
 print(a_list[["item_2"]])
 ```
 
-In R, a matrix is a vector plus the *dimension attribute*, and a data frame is a list (but with more attributes). 
+## Matrices
 
-- For matrix and data frame, we have the **row-and-column** concept. Columns 1-n in a data frame, correspond to items 1-n, respectively, in a list.
-- We can use `a_matrix[index_1, index_2]` to have values in a matrix.
-- All the columns in a matrix must have the same "structure"---e.g. if column 1 is an integer vector of length 5, then all the other columns must be integer vectors of length 5.
-- Columns in a data frame all have the same "length", but they can have different "structures"---e.g. column 1 is a double vector of length 6; column 2 is a character vector of length 6; column 3 is a logical vector of length 6.
-
-**Examples:**
+A matrix is a vector with the 'dim' attribute.
 ```{r}
-(a_matrix <- matrix(1L:9L, ncol = 3, nrow = 3, byrow = TRUE))
-(another_matrix <- matrix(letters[1:9], ncol = 3))
-(a_df <- data.frame(ID = letters[1:5],
-                    x = 1:5,
-                    y = "YES",
-                    Z = c(TRUE, FALSE, FALSE, TRUE, FALSE),
-                    stringsAsFactors = FALSE)
-  
-)
-print(dim(a_matrix))
-print(length(a_matrix))
-print(lengths(a_matrix))
-print(a_matrix[2:3, 1:2])
-(is.vector(a_matrix)) # this ONLY shows that matrix is NOT atomic vector
-print(dim(a_df))
-print(length(a_df))
-print(lengths(a_df))
-print(a_df[["ID"]])
-(names(a_df))
-(is.list(a_df))
+a_matrix <- 
+  structure(1:9,
+            dim = c(3, 3))
+(is.matrix(a_matrix))
+(attributes(a_matrix))
+print(a_matrix)
+
+b_matrix <- matrix(1:9, ncol = 3)
+(is.matrix(b_matrix))
+(attributes(b_matrix))
+print(b_matrix)
+
+(identical(a_matrix, b_matrix))
 ```
+
+
+## Data Frames
+
+A data frame is a rectangular table with columns and rows. Technically speaking,
+a data frame is a **list of atomic vectors**---they have the same length---plus three attributes: a) 'names' (for columns); b) 'row.names'; and 'class =  “data.frame”' 
+**Data frames share the properties of both matrices and lists.**
+
+```{r}
+my_df_1 <- 
+  structure(list(1:5,
+                 letters[1:5],
+                 c(TRUE, FALSE, TRUE, FALSE, TRUE)),
+            names = c('a', 'b', 'c'),
+            row.names = 1:5,
+            class = "data.frame")
+is.data.frame(my_df_1)
+attributes(my_df_1)
+
+my_df_2 <- data.frame(a = 1:5, 
+                      b = letters[1:5],
+                      c = c(TRUE, FALSE, TRUE, FALSE, TRUE),
+                      row.names = 1:5,
+                      stringsAsFactors = FALSE)
+identical(my_df_1, my_df_2)
+```
+
+## Factors and Dates
+
+Again, I quote words from Hadley Wickham (*Advanced R* 2nd Ed, https://adv-r.hadley.nz/vectors-chap.html):
+
+About factors
+
+>
+Factors are built on top of an integer vector with two attributes: a class, “factor”, which makes it behave differently from regular integer vectors, and levels, which defines the set of allowed values.
+>
+
+>
+It’s usually best to explicitly convert factors to character vectors if you need string-like behaviour.
+>
+
+About Dates
+
+>
+Date vectors are built on top of double vectors. They have class “Date” and no other attributes.
+>
 
