@@ -16,7 +16,7 @@ matrices
 data-frames
 factors-and-dates
 L5
-built-in-base-r-functions
+base-r-functions
 wrting-r-functions
 basics
 tips

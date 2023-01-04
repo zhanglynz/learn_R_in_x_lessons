@@ -1,8 +1,8 @@
 # Lesson 5 R Functions {#L5}
 
-Keep this in mind: In R, we use functions to get work done. So learning R in some a sense is learning how to use existed R functions and how to create new R functions. Existed R functions are those included in base R and extended R packages. In this lesson, we firstly list some built-in-base-R functions, and then touch upon how to write our own R functions.
+Keep this in mind: In R, we use functions to get work done. So learning R in some a sense is learning how to use existed R functions and how to create new R functions. Existed R functions are those included in base R and extended R packages. In this lesson, we firstly list some base R functions, and then touch upon how to write our own R functions.
 
-## Built-in Base R Functions
+## Base R Functions
 
 Function       |Description           | Example
 :--------------|:---------------------|:-------------
@@ -44,7 +44,7 @@ func_name <- function(arguments)
 Some points:
 
 - "Generally, function names should be verbs, and arguments should be nouns." (Wickham and Grolemund, https://r4ds.had.co.nz/functions.html) This is a good convention; anyway, function names should make sense and often should be self explained.
-- The body part can have many lines of R code; the last line is often `return(an_object)` (`an_object` can be an atomic vector, matrix, data frame or list) 
+- The body part can have many lines of R code; the last line is often `return(an_object)` (`an_object` can be an atomic vector, list, matrix, data frame or other OO [*Object Oriented*] object) 
 
 ### Tips 
 

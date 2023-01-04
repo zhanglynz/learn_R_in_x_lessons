@@ -160,7 +160,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="L5.html"><a href="L5.html"><i class="fa fa-check"></i><b>5</b> Lesson 5 R Functions</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="L5.html"><a href="L5.html#built-in-base-r-functions"><i class="fa fa-check"></i><b>5.1</b> Built-in Base R Functions</a></li>
+<li class="chapter" data-level="5.1" data-path="L5.html"><a href="L5.html#base-r-functions"><i class="fa fa-check"></i><b>5.1</b> Base R Functions</a></li>
 <li class="chapter" data-level="5.2" data-path="L5.html"><a href="L5.html#wrting-r-functions"><i class="fa fa-check"></i><b>5.2</b> Wrting R Functions</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="L5.html"><a href="L5.html#basics"><i class="fa fa-check"></i><b>5.2.1</b> Basics</a></li>
@@ -193,9 +193,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="L5" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">5</span> Lesson 5 R Functions<a href="L5.html#L5" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Keep this in mind: In R, we use functions to get work done. So learning R in some a sense is learning how to use existed R functions and how to create new R functions. Existed R functions are those included in base R and extended R packages. In this lesson, we firstly list some built-in-base-R functions, and then touch upon how to write our own R functions.</p>
-<div id="built-in-base-r-functions" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Built-in Base R Functions<a href="L5.html#built-in-base-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Keep this in mind: In R, we use functions to get work done. So learning R in some a sense is learning how to use existed R functions and how to create new R functions. Existed R functions are those included in base R and extended R packages. In this lesson, we firstly list some base R functions, and then touch upon how to write our own R functions.</p>
+<div id="base-r-functions" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Base R Functions<a href="L5.html#base-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
 <col width="29%" />
@@ -295,7 +295,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Some points:</p>
 <ul>
 <li>“Generally, function names should be verbs, and arguments should be nouns.” (Wickham and Grolemund, <a href="https://r4ds.had.co.nz/functions.html" class="uri">https://r4ds.had.co.nz/functions.html</a>) This is a good convention; anyway, function names should make sense and often should be self explained.</li>
-<li>The body part can have many lines of R code; the last line is often <code>return(an_object)</code> (<code>an_object</code> can be an atomic vector, matrix, data frame or list)</li>
+<li>The body part can have many lines of R code; the last line is often <code>return(an_object)</code> (<code>an_object</code> can be an atomic vector, list, matrix, data frame or other OO [<em>Object Oriented</em>] object)</li>
 </ul>
 </div>
 <div id="tips" class="section level3 hasAnchor" number="5.2.2">
