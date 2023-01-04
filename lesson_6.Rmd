@@ -61,7 +61,7 @@ I am going to make an R package called `BookStarter`.
 library(devtools)
 create_package("F:/Projects/BookStarter") 
 ````
-- Use `use_r()` to start an  R function (in a new session)
+- Use `use_r()` to start an  R function 
 ```` 
 library(devtools)
 use_r("start_book") 

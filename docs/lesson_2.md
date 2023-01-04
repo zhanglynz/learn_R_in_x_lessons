@@ -52,13 +52,15 @@ print(output)
 library(lubridate) # to use function days()
 how_old_in_days <- function(`birth_day_yyyy-mm-dd`)
 {today <- Sys.Date()
+ print(sprintf("Today is: %s.", today))
  life_in_days <- days(today - as.Date(`birth_day_yyyy-mm-dd`))
- print(life_in_days)
+ print(sprintf("Your life in days is: %s.", life_in_days))
 }
-how_old_in_days("2005-12-04") # today is "2022-12-25"
+how_old_in_days("2005-12-04") 
 ```
 
 ```
-## [1] "6241d 0H 0M 0S"
+## [1] "Today is: 2023-01-05."
+## [1] "Your life in days is: 6241d 0H 0M 0S."
 ```
 
