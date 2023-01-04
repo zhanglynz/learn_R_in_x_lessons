@@ -210,11 +210,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>assignment</li>
 <li><code>if else</code></li>
 <li><code>for</code> loop</li>
-<li>built-in R functions</li>
-<li>writing R functions</li>
+<li>functions from R system</li>
+<li>writing our own R functions</li>
 <li>R packages</li>
 </ol>
-<p>Note that items 1 to 5 in the above are in the domain of <strong>base R</strong>; various R packages that we install after having R can be referred to as <strong>extended R</strong>. In this section, we will cover items 1 to 3; items 4 and 5 will be the topics for Lesson <a href="L5.html#L5">5</a>; item 6 will be covered in Lesson <a href="L6.html#L6">6</a>.</p>
+<p>Note that items 1 to 5 in the above are in the domain of <strong>base R</strong> (the R that we download from CRAN); various R packages that we install after having R can be referred to as <strong>extended R</strong>. In this section, we will cover items 1 to 3; items 4 and 5 will be the topics for Lesson <a href="L5.html#L5">5</a>; item 6 will be covered in Lesson <a href="L6.html#L6">6</a>.</p>
 <div id="assignment-statements" class="section level3 hasAnchor" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> Assignment statements<a href="L3.html#assignment-statements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In R, an assignment statement creates a new (vector) variable and gives it value(s).</p>
@@ -248,7 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>if(conditional) {execution}</code></li>
 <li><code>if(conditional) {execution} else {alternative execution}</code></li>
 </ul>
-<p><strong><code>else if</code></strong>: this is kind of special. Let’s have an example. We create a function for giving a score, either ‘green’, ‘orange’, or ‘red’, based on <code>x</code> is positive and <span class="math inline">\(\le\)</span> 1, greater than 1 but <span class="math inline">\(\le\)</span> 2, or greater than 2.</p>
+<p><strong><code>else if</code></strong>: this is kind of special. Let’s have an example. We create a function for giving a score, either ‘green’, ‘orange’, or ‘red’, based on <code>x</code> is positive and <span class="math inline">\(\le\)</span> 1, greater than 1 but <span class="math inline">\(\le\)</span> 2, or greater than 2, respectively.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="L3.html#cb14-1" aria-hidden="true" tabindex="-1"></a>have_a_score <span class="ot">&lt;-</span> <span class="cf">function</span>(x) </span>
 <span id="cb14-2"><a href="L3.html#cb14-2" aria-hidden="true" tabindex="-1"></a>{<span class="cf">if</span>(x <span class="sc">&lt;</span> <span class="dv">0</span>) {</span>
 <span id="cb14-3"><a href="L3.html#cb14-3" aria-hidden="true" tabindex="-1"></a>   <span class="st">&quot;invalid&quot;</span></span>

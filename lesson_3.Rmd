@@ -20,11 +20,11 @@ To learn R, we must learn
 1. assignment
 1. `if else`
 1. `for` loop
-1. built-in R functions
-1. writing R functions
+1. functions from R system
+1. writing our own R functions
 1. R packages
 
-Note that items 1 to 5 in the above are in the domain of **base R**; various R packages that we install after having R can be referred to as **extended R**. In this section, we will cover items 1 to 3; items 4 and 5 will be the topics for Lesson \@ref(L5); item 6 will be covered in Lesson \@ref(L6).
+Note that items 1 to 5 in the above are in the domain of **base R** (the R that we download from CRAN); various R packages that we install after having R can be referred to as **extended R**. In this section, we will cover items 1 to 3; items 4 and 5 will be the topics for Lesson \@ref(L5); item 6 will be covered in Lesson \@ref(L6).
 
 ### Assignment statements 
 
@@ -68,7 +68,7 @@ if(x > 50) {print("x is greater than 50")
 - `if(conditional) {execution} else {alternative execution}`
 
 
-**`else if`**: this is kind of special. Let's have an example. We create a function for giving a score, either 'green', 'orange', or 'red', based on `x` is positive and $\le$ 1, greater than 1 but $\le$ 2, or greater than 2. 
+**`else if`**: this is kind of special. Let's have an example. We create a function for giving a score, either 'green', 'orange', or 'red', based on `x` is positive and $\le$ 1, greater than 1 but $\le$ 2, or greater than 2, respectively. 
 
 ```{r}
 have_a_score <- function(x) 
