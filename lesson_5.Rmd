@@ -4,21 +4,23 @@ Keep this in mind: In R, we use functions to get work done. So learning R in som
 
 ## Base R Functions
 
-Function       |Description           | Example
-:--------------|:---------------------|:-------------
-`:`            |create integer vector | `x <- 1:5`
-`c()`          |for creating vector   | `x <- c(1, 5, 8)`
-`rep()`        |for creating vector   | `x <- rep(0, 100)`
-`seq()`        |for creating vector   | `x <- seq(0, 1, by = 0.2)`
-`length()`     |get vector's length   | `n <- length(x)`
-`print()`      |print out             | `print(x)`
-`list()`       |create a list         | `my_list <- list(a = 1, b = 2:6)`
-`matrix()`     |create a matrix       | `m <- matrix(1:9, 3, 3)`
-`typeof()`     |get vector's type     | `typeof(x)`
-`plot()`       |for plotting          |
-`getwd()`      |get working directory | `getwd()`
-math functions |                      | `abs(x)`; `exp(x)`
-stats functions|                      | `mean(x)`; `sd(x)`;`rnorm(10)`
+Function       |Description               | Example
+:--------------|:-------------------------|:-------------
+`:`            |create integer vector     | `x <- 1:5`
+`c()`          |for creating vector       | `x <- c(1, 5, 8)`
+`rep()`        |for creating vector       | `x <- rep(0, 100)`
+`seq()`        |for creating vector       | `x <- seq(0, 1, by = 0.2)`
+`length()`     |get vector's length       | `n <- length(x)`
+`print()`      |print out                 | `print(x)`
+`list()`       |create a list             | `my_list <- list(a = 1, b = 2:6)`
+`matrix()`     |create a matrix           | `m <- matrix(1:9, 3, 3)`
+`typeof()`     |get vector's type         | `typeof(x)`
+`str()`        |show objects' "structure" | `str(x)`
+`View()`       |RStudio Viewer: see data  | `View(a_df)`
+`plot()`       |for plotting              |
+`getwd()`      |get working directory     | `getwd()`
+math functions |                          | `abs(x)`; `exp(x)`
+stats functions|                          | `mean(x)`; `sd(x)`;`rnorm(10)`
 
 The following code allows us to see many more built-in-base-R functions:
 ```{r, eval=FALSE}
