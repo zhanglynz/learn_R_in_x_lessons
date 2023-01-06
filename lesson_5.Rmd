@@ -22,7 +22,7 @@ Function       |Description               | Example
 math functions |                          | `abs(x)`; `exp(x)`
 stats functions|                          | `mean(x)`; `sd(x)`;`rnorm(10)`
 
-The following code allows us to see many more built-in-base-R functions:
+The following code allows us to see many more base R functions:
 ```{r, eval=FALSE}
 # Source: https://stackoverflow.com/questions/58476696/list-of-all-functions-in-base-r
 base_packages  <-  getOption('defaultPackages')
@@ -54,6 +54,7 @@ Some points:
 - Use `lapply()` and other helper functions (e.g. `unlist()`) to give a vectorized function---see this in the following example, "get sum of words".
 - Using `match.arg()`---see this in the following example, "add, subtract and multiply".
 - Function factory---see this in the following example, "create an operation".
+- Functions are "objects", and they can be put in a list---see this in the following example, "put function in a list".
 
 **Example:** get sum of words
 ```{r}
@@ -109,5 +110,23 @@ multi_op <- create_an_op("multipliction")
 plus_op(1, 2)
 subtr_op(1, 2)
 multi_op(10, 10)
+```
+
+**Example:** put function in a list
+```{r}
+my_summ <- function(data)
+{my_func_list <- 
+  list("mean" = mean, 
+       "median" = median,
+       "variance" = var,
+       "standard deviation" = sd,
+       "range" = range)
+  re <- lapply(my_func_list, function(f) f(my_data))
+names(re) <- names(my_func_list)
+return(re)
+}
+# testing
+my_data <- rnorm(1000)
+my_summ(my_data)
 ```
 

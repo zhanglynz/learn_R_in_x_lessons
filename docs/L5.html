@@ -23,7 +23,7 @@
 <meta name="author" content="Lingyun Zhang" />
 
 
-<meta name="date" content="2023-01-05" />
+<meta name="date" content="2023-01-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -287,7 +287,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 </tbody>
 </table>
-<p>The following code allows us to see many more built-in-base-R functions:</p>
+<p>The following code allows us to see many more base R functions:</p>
 <div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="L5.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Source: https://stackoverflow.com/questions/58476696/list-of-all-functions-in-base-r</span></span>
 <span id="cb92-2"><a href="L5.html#cb92-2" aria-hidden="true" tabindex="-1"></a>base_packages  <span class="ot">&lt;-</span>  <span class="fu">getOption</span>(<span class="st">&#39;defaultPackages&#39;</span>)</span>
 <span id="cb92-3"><a href="L5.html#cb92-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(base_packages)  <span class="ot">&lt;-</span>  base_packages</span>
@@ -315,6 +315,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Use <code>lapply()</code> and other helper functions (e.g. <code>unlist()</code>) to give a vectorized function—see this in the following example, “get sum of words”.</li>
 <li>Using <code>match.arg()</code>—see this in the following example, “add, subtract and multiply”.</li>
 <li>Function factory—see this in the following example, “create an operation”.</li>
+<li>Functions are “objects”, and they can be put in a list—see this in the following example, “put function in a list”.</li>
 </ul>
 <p><strong>Example:</strong> get sum of words</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="L5.html#cb94-1" aria-hidden="true" tabindex="-1"></a>letter_to_nbr <span class="ot">&lt;-</span> <span class="cf">function</span>(a_letter) </span>
@@ -370,6 +371,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] -1</code></pre>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="L5.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">multi_op</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 100</code></pre>
+<p><strong>Example:</strong> put function in a list</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="L5.html#cb110-1" aria-hidden="true" tabindex="-1"></a>my_summ <span class="ot">&lt;-</span> <span class="cf">function</span>(data)</span>
+<span id="cb110-2"><a href="L5.html#cb110-2" aria-hidden="true" tabindex="-1"></a>{my_func_list <span class="ot">&lt;-</span> </span>
+<span id="cb110-3"><a href="L5.html#cb110-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">list</span>(<span class="st">&quot;mean&quot;</span> <span class="ot">=</span> mean, </span>
+<span id="cb110-4"><a href="L5.html#cb110-4" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;median&quot;</span> <span class="ot">=</span> median,</span>
+<span id="cb110-5"><a href="L5.html#cb110-5" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;variance&quot;</span> <span class="ot">=</span> var,</span>
+<span id="cb110-6"><a href="L5.html#cb110-6" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;standard deviation&quot;</span> <span class="ot">=</span> sd,</span>
+<span id="cb110-7"><a href="L5.html#cb110-7" aria-hidden="true" tabindex="-1"></a>       <span class="st">&quot;range&quot;</span> <span class="ot">=</span> range)</span>
+<span id="cb110-8"><a href="L5.html#cb110-8" aria-hidden="true" tabindex="-1"></a>  re <span class="ot">&lt;-</span> <span class="fu">lapply</span>(my_func_list, <span class="cf">function</span>(f) <span class="fu">f</span>(my_data))</span>
+<span id="cb110-9"><a href="L5.html#cb110-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(re) <span class="ot">&lt;-</span> <span class="fu">names</span>(my_func_list)</span>
+<span id="cb110-10"><a href="L5.html#cb110-10" aria-hidden="true" tabindex="-1"></a><span class="fu">return</span>(re)</span>
+<span id="cb110-11"><a href="L5.html#cb110-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb110-12"><a href="L5.html#cb110-12" aria-hidden="true" tabindex="-1"></a><span class="co"># testing</span></span>
+<span id="cb110-13"><a href="L5.html#cb110-13" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
+<span id="cb110-14"><a href="L5.html#cb110-14" aria-hidden="true" tabindex="-1"></a><span class="fu">my_summ</span>(my_data)</span></code></pre></div>
+<pre><code>## $mean
+## [1] 0.01610682
+## 
+## $median
+## [1] 0.004848293
+## 
+## $variance
+## [1] 1.081847
+## 
+## $`standard deviation`
+## [1] 1.040119
+## 
+## $range
+## [1] -3.478035  3.512850</code></pre>
 
 </div>
 </div>
