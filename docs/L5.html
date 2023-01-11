@@ -23,7 +23,7 @@
 <meta name="author" content="Lingyun Zhang" />
 
 
-<meta name="date" content="2023-01-07" />
+<meta name="date" content="2023-01-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -316,6 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Using <code>match.arg()</code>—see this in the following example, “add, subtract and multiply”.</li>
 <li>Function factory—see this in the following example, “create an operation”.</li>
 <li>Functions are “objects”, and they can be put in a list—see this in the following example, “put function in a list”.</li>
+<li>Using <code>UseMethod</code>—simple OOP—see this in the following simple example, “using <code>UseMethod</code>”</li>
 </ul>
 <p><strong>Example:</strong> get sum of words</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="L5.html#cb94-1" aria-hidden="true" tabindex="-1"></a>letter_to_nbr <span class="ot">&lt;-</span> <span class="cf">function</span>(a_letter) </span>
@@ -387,19 +388,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb110-13"><a href="L5.html#cb110-13" aria-hidden="true" tabindex="-1"></a>my_data <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>)</span>
 <span id="cb110-14"><a href="L5.html#cb110-14" aria-hidden="true" tabindex="-1"></a><span class="fu">my_summ</span>(my_data)</span></code></pre></div>
 <pre><code>## $mean
-## [1] 0.01610682
+## [1] -0.06117299
 ## 
 ## $median
-## [1] 0.004848293
+## [1] -0.05238315
 ## 
 ## $variance
-## [1] 1.081847
+## [1] 1.030833
 ## 
 ## $`standard deviation`
-## [1] 1.040119
+## [1] 1.015299
 ## 
 ## $range
-## [1] -3.478035  3.512850</code></pre>
+## [1] -3.382503  3.068952</code></pre>
+<p><strong>Example:</strong> using <code>UseMethod</code></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="L5.html#cb112-1" aria-hidden="true" tabindex="-1"></a>find_types <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
+<span id="cb112-2"><a href="L5.html#cb112-2" aria-hidden="true" tabindex="-1"></a>{<span class="fu">UseMethod</span>(<span class="st">&quot;find_types&quot;</span>)</span>
+<span id="cb112-3"><a href="L5.html#cb112-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb112-4"><a href="L5.html#cb112-4" aria-hidden="true" tabindex="-1"></a>find_types.data.frame <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
+<span id="cb112-5"><a href="L5.html#cb112-5" aria-hidden="true" tabindex="-1"></a>{<span class="fu">vapply</span>(x, typeof, <span class="fu">character</span>(<span class="dv">1</span>))</span>
+<span id="cb112-6"><a href="L5.html#cb112-6" aria-hidden="true" tabindex="-1"></a>} </span>
+<span id="cb112-7"><a href="L5.html#cb112-7" aria-hidden="true" tabindex="-1"></a>find_types.data.table <span class="ot">&lt;-</span> <span class="cf">function</span>(x)</span>
+<span id="cb112-8"><a href="L5.html#cb112-8" aria-hidden="true" tabindex="-1"></a>{x <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(x)</span>
+<span id="cb112-9"><a href="L5.html#cb112-9" aria-hidden="true" tabindex="-1"></a> <span class="fu">find_types.data.frame</span>(x)</span>
+<span id="cb112-10"><a href="L5.html#cb112-10" aria-hidden="true" tabindex="-1"></a>}  </span>
+<span id="cb112-11"><a href="L5.html#cb112-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-12"><a href="L5.html#cb112-12" aria-hidden="true" tabindex="-1"></a><span class="co"># testing</span></span>
+<span id="cb112-13"><a href="L5.html#cb112-13" aria-hidden="true" tabindex="-1"></a>a_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb112-14"><a href="L5.html#cb112-14" aria-hidden="true" tabindex="-1"></a>                   <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>),</span>
+<span id="cb112-15"><a href="L5.html#cb112-15" aria-hidden="true" tabindex="-1"></a>                   <span class="at">c =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb112-16"><a href="L5.html#cb112-16" aria-hidden="true" tabindex="-1"></a>                   <span class="at">d =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>),</span>
+<span id="cb112-17"><a href="L5.html#cb112-17" aria-hidden="true" tabindex="-1"></a>                   <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb112-18"><a href="L5.html#cb112-18" aria-hidden="true" tabindex="-1"></a>(<span class="fu">find_types</span>(a_df))</span></code></pre></div>
+<pre><code>##           a           b           c           d 
+##   &quot;integer&quot;    &quot;double&quot; &quot;character&quot;   &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="L5.html#cb114-1" aria-hidden="true" tabindex="-1"></a>a_dt <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">data.table</span>(</span>
+<span id="cb114-2"><a href="L5.html#cb114-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">a =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb114-3"><a href="L5.html#cb114-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">b =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>),</span>
+<span id="cb114-4"><a href="L5.html#cb114-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">c =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb114-5"><a href="L5.html#cb114-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">d =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb114-6"><a href="L5.html#cb114-6" aria-hidden="true" tabindex="-1"></a>(<span class="fu">find_types</span>(a_dt))</span></code></pre></div>
+<pre><code>##           a           b           c           d 
+##   &quot;integer&quot;    &quot;double&quot; &quot;character&quot;   &quot;logical&quot;</code></pre>
 
 </div>
 </div>

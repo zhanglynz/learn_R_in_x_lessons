@@ -55,6 +55,7 @@ Some points:
 - Using `match.arg()`---see this in the following example, "add, subtract and multiply".
 - Function factory---see this in the following example, "create an operation".
 - Functions are "objects", and they can be put in a list---see this in the following example, "put function in a list".
+- Using `UseMethod`---simple OOP---see this in the following simple example, "using `UseMethod`"
 
 **Example:** get sum of words
 ```{r}
@@ -128,5 +129,34 @@ return(re)
 # testing
 my_data <- rnorm(1000)
 my_summ(my_data)
+```
+
+**Example:** using `UseMethod`
+```{r, warning=FALSE, message=FALSE}
+find_types <- function(x)
+{UseMethod("find_types")
+}
+find_types.data.frame <- function(x)
+{vapply(x, typeof, character(1))
+} 
+find_types.data.table <- function(x)
+{x <- as.data.frame(x)
+ find_types.data.frame(x)
+}  
+
+# testing
+a_df <- data.frame(a = 1:5,
+                   b = rnorm(5),
+                   c = letters[1:5],
+                   d = c(TRUE, TRUE, FALSE, FALSE, TRUE),
+                   stringsAsFactors = FALSE)
+(find_types(a_df))
+
+a_dt <- data.table::data.table(
+  a = 1:5,
+  b = rnorm(5),
+  c = letters[1:5],
+  d = c(TRUE, TRUE, FALSE, FALSE, TRUE))
+(find_types(a_dt))
 ```
 

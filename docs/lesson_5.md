@@ -57,6 +57,7 @@ Some points:
 - Using `match.arg()`---see this in the following example, "add, subtract and multiply".
 - Function factory---see this in the following example, "create an operation".
 - Functions are "objects", and they can be put in a list---see this in the following example, "put function in a list".
+- Using `UseMethod`---simple OOP---see this in the following simple example, "using `UseMethod`"
 
 **Example:** get sum of words
 
@@ -185,18 +186,60 @@ my_summ(my_data)
 
 ```
 ## $mean
-## [1] 0.01610682
+## [1] -0.06117299
 ## 
 ## $median
-## [1] 0.004848293
+## [1] -0.05238315
 ## 
 ## $variance
-## [1] 1.081847
+## [1] 1.030833
 ## 
 ## $`standard deviation`
-## [1] 1.040119
+## [1] 1.015299
 ## 
 ## $range
-## [1] -3.478035  3.512850
+## [1] -3.382503  3.068952
+```
+
+**Example:** using `UseMethod`
+
+```r
+find_types <- function(x)
+{UseMethod("find_types")
+}
+find_types.data.frame <- function(x)
+{vapply(x, typeof, character(1))
+} 
+find_types.data.table <- function(x)
+{x <- as.data.frame(x)
+ find_types.data.frame(x)
+}  
+
+# testing
+a_df <- data.frame(a = 1:5,
+                   b = rnorm(5),
+                   c = letters[1:5],
+                   d = c(TRUE, TRUE, FALSE, FALSE, TRUE),
+                   stringsAsFactors = FALSE)
+(find_types(a_df))
+```
+
+```
+##           a           b           c           d 
+##   "integer"    "double" "character"   "logical"
+```
+
+```r
+a_dt <- data.table::data.table(
+  a = 1:5,
+  b = rnorm(5),
+  c = letters[1:5],
+  d = c(TRUE, TRUE, FALSE, FALSE, TRUE))
+(find_types(a_dt))
+```
+
+```
+##           a           b           c           d 
+##   "integer"    "double" "character"   "logical"
 ```
 
