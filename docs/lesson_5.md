@@ -92,8 +92,8 @@ get_sum_of_words(c('a', 'ab', 'abc'))
 **Example:** using `match.arg()`
 
 ```r
-add_subtr_multi <- function(x, y, method = c("sum", "subtract", "multipliction"))
-{method <- match.arg(method)
+add_subtr_multi <- function(x, y, method = "sum")
+{method <- match.arg(method, c("sum", "subtract", "multipliction"))
  switch(method,
         "sum" = x + y,
         "subtract" = x - y,
@@ -127,8 +127,8 @@ add_subtr_multi(10, 10, "multipliction")
 **Example:** function factory
 
 ```r
-create_an_op <- function(op = c("sum", "subtract", "multipliction"))
-{op <- match.arg(op)
+create_an_op <- function(op)
+{op <- match.arg(op, c("sum", "subtract", "multipliction"))
  function(x, y) {
    switch(op,
           "sum" = x + y,
@@ -186,19 +186,19 @@ my_summ(my_data)
 
 ```
 ## $mean
-## [1] 0.02268977
+## [1] 0.07380624
 ## 
 ## $median
-## [1] 0.01971467
+## [1] 0.06370802
 ## 
 ## $variance
-## [1] 1.01091
+## [1] 1.087638
 ## 
 ## $`standard deviation`
-## [1] 1.00544
+## [1] 1.042899
 ## 
 ## $range
-## [1] -3.071082  3.055681
+## [1] -3.119193  3.354647
 ```
 
 **Example:** using `UseMethod`
@@ -209,12 +209,8 @@ find_types <- function(x)
 }
 find_types.data.frame <- function(x)
 {vapply(x, typeof, character(1))
-} 
-find_types.data.table <- function(x)
-{x <- as.data.frame(x)
- find_types.data.frame(x)
-}  
-
+}
+find_types.tibble <- find_types.data.table <- find_types.data.frame
 # testing
 a_df <- data.frame(a = 1:5,
                    b = rnorm(5),
@@ -236,6 +232,21 @@ a_dt <- data.table::data.table(
   c = letters[1:5],
   d = c(TRUE, TRUE, FALSE, FALSE, TRUE))
 (find_types(a_dt))
+```
+
+```
+##           a           b           c           d 
+##   "integer"    "double" "character"   "logical"
+```
+
+```r
+a_tibble <- tibble::tibble(
+  a = 1:5,
+  b = rnorm(5),
+  c = letters[1:5],
+  d = c(TRUE, TRUE, FALSE, FALSE, TRUE)
+)
+(find_types(a_tibble))
 ```
 
 ```

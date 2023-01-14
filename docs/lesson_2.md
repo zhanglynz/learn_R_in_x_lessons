@@ -60,7 +60,7 @@ how_old_in_days("2005-12-04")
 ```
 
 ```
-## [1] "Today is: 2023-01-12."
-## [1] "Your life in days is: 6248d 0H 0M 0S."
+## [1] "Today is: 2023-01-14."
+## [1] "Your life in days is: 6250d 0H 0M 0S."
 ```
 
