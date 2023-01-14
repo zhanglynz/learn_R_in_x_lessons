@@ -2,7 +2,7 @@
 knit: "bookdown::render_book"
 title: "Learn R in 10 Lessons: an Introductory Guide"
 author: "Lingyun Zhang"
-date: "2023-01-14"
+date: "2023-01-15"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

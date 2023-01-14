@@ -11,6 +11,7 @@ rmd_files: [
   "lesson_6.Rmd",
   "lesson_7.Rmd",
   "lesson_8.Rmd",
+  "appendix_adr.Rmd"
 
 
 

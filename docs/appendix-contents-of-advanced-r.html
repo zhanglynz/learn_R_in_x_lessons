@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Learn R in 10 Lessons: an Introductory Guide</title>
-  <meta name="description" content="Learn R in 10 Lessons: an Introductory Guide" />
+  <title>Appendix: Contents of Advanced R | Learn R in 10 Lessons: an Introductory Guide</title>
+  <meta name="description" content="Appendix: Contents of Advanced R | Learn R in 10 Lessons: an Introductory Guide" />
   <meta name="generator" content="bookdown 0.31 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Learn R in 10 Lessons: an Introductory Guide" />
+  <meta property="og:title" content="Appendix: Contents of Advanced R | Learn R in 10 Lessons: an Introductory Guide" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Learn R in 10 Lessons: an Introductory Guide" />
+  <meta name="twitter:title" content="Appendix: Contents of Advanced R | Learn R in 10 Lessons: an Introductory Guide" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
+<link rel="prev" href="L8.html"/>
 
-<link rel="next" href="L1.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -192,45 +192,163 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Learn R in 10 Lessons: an Introductory Guide</h1>
-<p class="author"><em>Lingyun Zhang</em></p>
-<p class="date"><em>2023-01-15</em></p>
-</div>
-<div id="preface" class="section level1 unnumbered hasAnchor">
-<h1>Preface<a href="index.html#preface" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Why learn R?</p>
+<div id="appendix-contents-of-advanced-r" class="section level1 unnumbered hasAnchor">
+<h1>Appendix: Contents of Advanced R<a href="appendix-contents-of-advanced-r.html#appendix-contents-of-advanced-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Hadley Wickham’s book, <em>Advanced R</em>, has <strong>five</strong> parts:</p>
+<ol style="list-style-type: decimal">
+<li>Foundations (Ch 1 - 8)</li>
+<li>Functional programming (Ch 9 - 11)</li>
+<li>Object oriented programming (Ch 12 - 16)</li>
+<li>Metaprogramming (Ch 17 - 21)</li>
+<li>Debugging, performance (using C++) (Ch 22 - 25)</li>
+</ol>
+<p><strong>Chapter 1</strong> Introduction</p>
+<p><strong>Chapter 2</strong> Names and values</p>
 <ul>
-<li>R is a general purpose computer language</li>
-<li>R is the best for dealing with data</li>
-<li>R has such a good IDE (Integrated Development Environment), RStudio</li>
-<li>R has so many valuable/powerful packages</li>
-<li>R has a very good ecosystem</li>
-<li>R is free</li>
+<li>value has a name; name point to a value</li>
+<li>modify-on-copy</li>
 </ul>
-<p>What to learn?</p>
+<p><strong>Chapter 3</strong> Vectors</p>
+<p>Vectors consist of
+- atomic vectors
+- logical
+- integer
+- double
+- character
+- lists: each item of a list is a “vector”
+- NULL (a special vector with length being 0)</p>
+<p>Other <strong>objects</strong> are built upon vectors by adding one or more <em>attributes</em></p>
 <ul>
-<li>base R</li>
-<li>R packages</li>
-<li>workflows</li>
+<li>matrix: vector + <code>dim</code> attribute</li>
+<li>data.frame: list + <code>names</code> attribute + <code>row.names</code> attribute + <code>class = data.frame</code> attribute</li>
+<li>factor: integer vector + <code>class = factor</code> attribute + <code>levels</code> attribute</li>
+<li>Dates: double vector + <code>Date</code> attribute</li>
 </ul>
-<p>How to learn?</p>
+<p><strong>Chapter 4</strong> Subsetting</p>
+<p>For an atomic vector, using <code>[something]</code>. Six ways (indicated by “something”):
+a) a positive integer vector; b) a negative integer vector; c) 0; d) empty; e) a logical vector
+f) a character vector</p>
+<p>For a matrix, using <code>[ , ]</code>. Note using ‘[ , , drop = FALSE]’</p>
+<p>For a list, using <code>[]</code> or <code>[ , ]</code>. To have <strong>one item</strong>, using <code>[[]]</code> or <code>$</code>.</p>
+<p><strong>Chapter 5</strong> Control flow</p>
 <ul>
-<li>try to learn from the best resources</li>
-<li>grasp the basics</li>
-<li>aim to problem solving with R</li>
-<li>write many R scrips</li>
-<li>learn incessantly</li>
+<li><code>if(condi) {}</code></li>
+<li><code>if(condi) {} else {}</code></li>
+<li>for loop</li>
 </ul>
+<p><strong>Chapter 6</strong> Functions</p>
+<p>A function has three components: a) formula (arguments); b) body; c) environment</p>
+<ul>
+<li>A function is an <strong>object</strong></li>
+<li>A function is often has a name; sometimes we use anonymous functions</li>
+<li>Functions can be put in a list</li>
+<li>How a function find its data
+<ul>
+<li>where:
+<ul>
+<li>current environment (“name masking”)</li>
+<li>if not, one level up</li>
+</ul></li>
+<li>when:
+<ul>
+<li>fresh start (new environment will be created)</li>
+<li>dynamic look up</li>
+</ul></li>
+</ul></li>
+<li>Using <code>on.exit</code> to restore old setting (e.g. working directory)</li>
+</ul>
+<p><strong>Chapter 7</strong> Environment</p>
+<p>Just a reference</p>
+<p><strong>Chapter 8</strong> Conditions</p>
+<p>This chapter is about using</p>
+<ul>
+<li><code>stop()</code></li>
+<li><code>warning()</code></li>
+<li><code>message()</code></li>
+</ul>
+<p><strong>Chapter 9</strong> Functionals</p>
+<p>Base R:</p>
+<ul>
+<li><code>apply()</code> (for matrix)</li>
+<li><code>lapply()</code> (for list; returns a list)</li>
+<li><code>vapply()</code> (‘v’ is for verbose)</li>
+</ul>
+<p><code>purrr</code> package</p>
+<p>Map family</p>
+<ul>
+<li><code>map()</code> + <code>map_lgl()</code> …</li>
+<li><code>map2()</code> + <code>map_int()</code> …</li>
+<li><code>pmap()</code> + <code>pmap_dbl()</code> …</li>
+</ul>
+<p>Modify family</p>
+<ul>
+<li><code>modify()</code></li>
+<li><code>modify2()</code></li>
+</ul>
+<p>Walk family</p>
+<ul>
+<li><code>walk()</code></li>
+<li><code>walk2()</code></li>
+</ul>
+<p>The following table (taken from Hadley’s book) gives a good summary:</p>
+<p><img src="figs/purrr_pic.PNG" /></p>
+<p>Reduce family</p>
+<ul>
+<li><code>reduce()</code></li>
+<li><code>reduce2()</code></li>
+</ul>
+<p><strong>Chapter 10</strong> Function factories</p>
+<p>This is about writing a function to create many functions.</p>
+<p><strong>Chapter 11</strong> Function operators</p>
+<p>Special function factory, where the input is function(s). Just a reference.</p>
+<p><strong>Chapter 12</strong> Base types</p>
+<p>Objects in R can be</p>
+<ul>
+<li>Base</li>
+<li>S3</li>
+<li>S4</li>
+<li>R6 …</li>
+</ul>
+<p>We can check with <code>sloop::otype(an_obj)</code>.</p>
+<p>There are 25 types in base R.</p>
+<p><strong>Chapter 13</strong> S3</p>
+<p>How to create an S3 class: writing three functions</p>
+<ul>
+<li>constructor function</li>
+<li>validator function</li>
+<li>helper function</li>
+</ul>
+<p>Define a <em>generic function</em> and <em>methods</em></p>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="appendix-contents-of-advanced-r.html#cb124-1" aria-hidden="true" tabindex="-1"></a>my_generic <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb124-2"><a href="appendix-contents-of-advanced-r.html#cb124-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">UseMethod</span>(<span class="st">&quot;my_generic&quot;</span>)</span>
+<span id="cb124-3"><a href="appendix-contents-of-advanced-r.html#cb124-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb124-4"><a href="appendix-contents-of-advanced-r.html#cb124-4" aria-hidden="true" tabindex="-1"></a>my_generic.class_1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb124-5"><a href="appendix-contents-of-advanced-r.html#cb124-5" aria-hidden="true" tabindex="-1"></a>  body</span>
+<span id="cb124-6"><a href="appendix-contents-of-advanced-r.html#cb124-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb124-7"><a href="appendix-contents-of-advanced-r.html#cb124-7" aria-hidden="true" tabindex="-1"></a>my_generic.class_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb124-8"><a href="appendix-contents-of-advanced-r.html#cb124-8" aria-hidden="true" tabindex="-1"></a>  body</span>
+<span id="cb124-9"><a href="appendix-contents-of-advanced-r.html#cb124-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb124-10"><a href="appendix-contents-of-advanced-r.html#cb124-10" aria-hidden="true" tabindex="-1"></a>my_generic.class_3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb124-11"><a href="appendix-contents-of-advanced-r.html#cb124-11" aria-hidden="true" tabindex="-1"></a>  body</span>
+<span id="cb124-12"><a href="appendix-contents-of-advanced-r.html#cb124-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb124-13"><a href="appendix-contents-of-advanced-r.html#cb124-13" aria-hidden="true" tabindex="-1"></a><span class="co"># using it</span></span>
+<span id="cb124-14"><a href="appendix-contents-of-advanced-r.html#cb124-14" aria-hidden="true" tabindex="-1"></a><span class="fu">my_generic</span>(x)</span></code></pre></div>
 
 </div>
+
+
+
+
+
+
+
             </section>
 
           </div>
         </div>
       </div>
+<a href="L8.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
-<a href="L1.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
